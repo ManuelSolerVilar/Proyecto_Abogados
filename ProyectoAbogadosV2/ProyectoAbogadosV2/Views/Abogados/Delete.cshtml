@@ -1,0 +1,96 @@
+﻿@model ProyectoAbogadosV2.Models.Abogado
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Abogado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NombreAbogado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NombreAbogado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ApellidosAbogado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ApellidosAbogado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NifAbogado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NifAbogado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MovilAbogado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MovilAbogado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FijoAbogado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FijoAbogado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion_Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Poblacion_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Poblacion_Cliente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cp_Cliente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cp_Cliente)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

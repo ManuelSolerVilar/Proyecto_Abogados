@@ -1,0 +1,137 @@
+﻿@model ProyectoAbogadosV2.Models.Expediente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Expediente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Abogado.NombreAbogado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Abogado.NombreAbogado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cliente.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Jurisdiccion.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Jurisdiccion.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TituloExpediente)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TituloExpediente)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaInicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaInicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FechaCierre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FechaCierre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ProvisionFondos)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProvisionFondos)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalMinuta)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalMinuta)
+        </dd>
+
+    </dl>
+</div>
+@* Se añade código para presentar los expedientes del cliente seleccionado *@
+<div>
+    <h4>Actuaciones asignadas al expediente</h4>
+    <table class="table">
+        <tr>
+
+            <td>Fecha Inicio</td>
+            <td>Fecha Cierre</td>
+            <td>Descripción</td>
+            <td>Notificación Cliente</td>
+            <td>Notificación Juzgado</td>
+            <td></td>
+        </tr>
+        @foreach (var item in Model.Actuaciones)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotificacionCliente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NotificacionJuzgado)
+                </td>
+
+                <td>
+                    <div class="hidden-print">
+                        @Html.ActionLink("Edit", "Edit", "Actuaciones", new { id = item.Id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Actuaciones", new { id = item.Id }, null)
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@* Se añade para poder imprimir la página *@
+<div class="hidden-print text-center">
+    <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
