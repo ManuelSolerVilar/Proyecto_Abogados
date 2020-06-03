@@ -10,14 +10,35 @@ using ProyectoAbogadosV2.Models;
 
 namespace ProyectoAbogadosV2.Controllers
 {
+    
+
     public class ExpedientesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Expedientes
-        public ActionResult Index()
+        public ActionResult Index(string strTipoJurisdiccion, string strCadenaBusqueda)
         {
             var expedientes = db.Expedientes.Include(e => e.Abogado).Include(e => e.Cliente).Include(e => e.Jurisdiccion);
+            expedientes = expedientes.OrderByDescending(s => s.FechaInicio); //Para Ordenar por fecha de inicio del expediente
+
+            // Para presentar los tipos de avería en la vista
+            var lstTipoJurisdiccion = new List<string>();
+            var qryTipoJurisdiccion = from d in db.Expedientes
+                                      orderby d.Jurisdiccion.Nombre
+                                      select d.Jurisdiccion.Nombre;
+            lstTipoJurisdiccion.AddRange(qryTipoJurisdiccion.Distinct());
+            ViewBag.ListaTipoAverias = new SelectList(lstTipoJurisdiccion);
+
+            if (!String.IsNullOrEmpty(strCadenaBusqueda))
+            {
+                expedientes = expedientes.Where(s => s.Cliente.Nombre.Contains(strCadenaBusqueda));
+            }
+            if (!string.IsNullOrEmpty(strTipoJurisdiccion))
+            {
+                expedientes = expedientes.Where(x => x.Jurisdiccion.Nombre == strTipoJurisdiccion);
+            }
+
             return View(expedientes.ToList());
         }
 
@@ -36,7 +57,10 @@ namespace ProyectoAbogadosV2.Controllers
             return View(expediente);
         }
 
+
         // GET: Expedientes/Create
+        [Authorize(Roles = "Administrador")]
+
         public ActionResult Create()
         {
             ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado");
@@ -116,7 +140,6 @@ namespace ProyectoAbogadosV2.Controllers
             }
             return View(expediente);
         }
-
         // POST: Expedientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

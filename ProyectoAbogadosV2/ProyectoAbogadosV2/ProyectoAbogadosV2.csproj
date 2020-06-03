@@ -45,10 +45,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -167,6 +174,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="ChatHub.cs" />
     <Compile Include="Controllers\AbogadosController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ActuacionesController.cs" />
@@ -179,6 +187,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005291922505_PrimeraMigracion.cs" />
+    <Compile Include="Migrations\202005291922505_PrimeraMigracion.Designer.cs">
+      <DependentUpon>202005291922505_PrimeraMigracion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Abogado.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Actuacion.cs" />
@@ -189,6 +202,7 @@
     <Compile Include="Models\Jurisdiccion.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\SoporteContexto.cs" />
+    <Compile Include="Models\SubirArchivosModelo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -197,6 +211,17 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Estilos.css" />
+    <Content Include="Content\Imagenes\Abogado1280845.jpg" />
+    <Content Include="Content\Imagenes\Actuación1280845.jpg" />
+    <Content Include="Content\Imagenes\Agendas.jpg" />
+    <Content Include="Content\Imagenes\Agendas1280187.jpg" />
+    <Content Include="Content\Imagenes\Agendas1280201.jpg" />
+    <Content Include="Content\Imagenes\Agendas1280285.jpg" />
+    <Content Include="Content\Imagenes\Agendas1280400.jpg" />
+    <Content Include="Content\Imagenes\Cliente1280845.jpg" />
+    <Content Include="Content\Imagenes\Documento1280845.jpg" />
+    <Content Include="Content\Imagenes\Expediente1280845.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -209,6 +234,8 @@
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -278,9 +305,11 @@
     <Content Include="Views\Jurisdicciones\Details.cshtml" />
     <Content Include="Views\Jurisdicciones\Edit.cshtml" />
     <Content Include="Views\Jurisdicciones\Index.cshtml" />
+    <Content Include="Views\Documentos\SubirArchivo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Temp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -294,6 +323,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202005291922505_PrimeraMigracion.resx">
+      <DependentUpon>202005291922505_PrimeraMigracion.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

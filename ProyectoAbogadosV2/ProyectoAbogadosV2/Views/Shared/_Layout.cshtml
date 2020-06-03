@@ -4,43 +4,103 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/Estilos.css" rel="stylesheet" />
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+    <div class="navbar navbar-inverse navbar-fixed-top ml-2 mr-2 grisletras">
+        <div class="container-fluid bg-white color-enlacesgrisvioleta">
+            <div class="navbar-header ">
+                <button type="button" class="navbar-toggle colortortuga " data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                   
+
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Logo/EnlaceDespacho", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
-                    <li>@Html.ActionLink("Clientes", "Index", "Clientes")</li>
-                    <li>@Html.ActionLink("Abogados", "Index", "Abogados")</li>
-                    <li>@Html.ActionLink("Expedientes", "Index", "Expedientes")</li>
-                    <li>@Html.ActionLink("Documentos", "Index", "Documentos")</li>
-                    <li>@Html.ActionLink("Actuaciones", "Index", "Actuaciones")</li>
-                    <li>@Html.ActionLink("Jurisdicciones", "Index", "Jurisdicciones")</li>
+            <div class="navbar-collapse collapse bg-white">
+                <ul class="nav navbar-nav ">
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Usuario"))
+                        {
+                            <li>@Html.ActionLink("EXPEDIENTES", "Index", "Expedientes")</li>
+                            <li>@Html.ActionLink("DOCUMENTOS", "Index", "Documentos")</li>
+                            <li>@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</li>
+                            <li>@Html.ActionLink("CONTACTO", "Contact", "Home")</li>
+                        }
+                        if (User.IsInRole("Administrador"))
+                        {
+                            <li>@Html.ActionLink("CLIENTES", "Index", "Clientes")</li>
+                            <li>@Html.ActionLink("ABOGADOS", "Index", "Abogados")</li>
+                            <li>@Html.ActionLink("EXPEDIENTES", "Index", "Expedientes")</li>
+                            <li>@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</li>
+                            <li>@Html.ActionLink("DOCUMENTOS", "Index", "Documentos")</li>
+                            <li>@Html.ActionLink("JURISDICCIONES", "Index", "Jurisdicciones")</li>
+                        }
+                    }
+                    else
+                    {
+                        @*<li>@Html.ActionLink("Abogados", "Index", "Abogados")</li>
+            <li>@Html.ActionLink("Expedientes", "Index", "Expedientes")</li>
+            <li>@Html.ActionLink("Documentos", "SubirArchivo", "Documentos")</li>
+            <li>@Html.ActionLink("Actuaciones", "Index", "Actuaciones")</li>
+            <li>@Html.ActionLink("Jurisdicciones", "Index", "Jurisdicciones")</li>*@
+                    }
+
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content">
+    <div class="container-fluid body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+        <footer class=" ml-2 mr-2">
+            <div class="container-fluid">
+                <div class="row bg-azuloscuro">
+                    <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                        <p class="color-grisletras">DATOS DE CONTACTO:</p>
+                        <p class="color-enlacesgrisvioleta">SolerySoler Abogados S.L.</p>
+                        <p class="color-enlacesgrisvioleta">C/. Jardines, 16 - 1ºD</p>
+                        <p class="color-enlacesgrisvioleta">Elda (Alicante)</p>
+                        <p class="color-enlacesgrisvioleta">solerysoler@gmail.com</p>
+                        <p class="color-enlacesgrisvioleta">Tel: 610 000 000</p>
+                    </div>
+                    <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                        <p class="color-grisletras">ENLACES DE INTERÉS:</p>
+                        <p class="color-enlacesgrisvioleta">Colegio de Abogados de Alicante</p>
+                        <p class="color-enlacesgrisvioleta">Escuela de Práctica Jurídica de Alicante</p>
+                        <p class="color-enlacesgrisvioleta">Seguridad Social</p>
+                        <p class="color-enlacesgrisvioleta"></p>
+                        <p class="color-enlacesgrisvioleta"></p>
+                    </div>
+                    <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                        <p class="color-grisletras">TRABAJA CON NOSOTROS:</p>
+                        <p class="color-enlacesgrisvioleta">  </p>
+                        <p class="color-enlacesgrisvioleta">Envia tu C.V.</p>
+                        <p class="color-enlacesgrisvioleta">TIENES ALGUNA CONSULTA</p>
+                        <p class="color-enlacesgrisvioleta">  </p>
+                        <p class="color-enlacesgrisvioleta">Formulario de Contacto</p>
+                    </div>
+                </div>
+                <div class="row bg-light color-enlacesgrisvioleta ">                    
+                        <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
+                            <p class="color-enlacesgrisvioleta">Política de Privacidad</p>
+                        </div>
+                        <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
+                            <p class="color-enlacesgrisvioleta">Términos de uso</p>
+                        </div>
+                        <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
+                            <p>&copy; Diseño Legal S.L. @DateTime.Now.Year</p>
+                        </div>
+                </div>
+            </div>
         </footer>
     </div>
 

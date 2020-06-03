@@ -4,30 +4,41 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+    <div class="container-fluid ">
+        <div class="row">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th></th>
-    </tr>
+            <div class="col-12 bg-azulmarino ml-2 mr-2">
+                <h2 class="text-white">Listado de Jurisdicciones</h2>
+            </div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <div class="col-6 ml-2 mr-2">
+                <p>
+                    @Html.ActionLink("Nueva Jurisdicción", "Create")
+                </p>
+                <table class="table">
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Nombre)
+                        </th>
+                        <th></th>
+                    </tr>
 
-</table>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Nombre)
+                            </td>
+                            <td>
+                                @Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) |
+                                @Html.ActionLink("DETALLE", "Details", new { id = item.Id }) |
+                                @Html.ActionLink("BORRAR", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+                    }
+
+                </table>
+                
+            </div>
+</div>
+</div>

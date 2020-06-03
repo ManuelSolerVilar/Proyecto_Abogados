@@ -3,8 +3,14 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<h2>Details</h2>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 ml-4 mr-4">
+                <h2>@Html.ActionLink("Expediente", "Index", "Expedientes") / Detalle</h2>
+            </div>
+        </div>
+        <hr />
+    </div>
 
 <div>
     <h4>Expediente</h4>
@@ -118,8 +124,10 @@
 
                 <td>
                     <div class="hidden-print">
-                        @Html.ActionLink("Edit", "Edit", "Actuaciones", new { id = item.Id }, null) |
-                        @Html.ActionLink("Delete", "Delete", "Actuaciones", new { id = item.Id }, null)
+                        @Html.ActionLink("CONSULTAR ACTUACIÓN", "Details", "Actuaciones", new { id = item.Id }, null) |
+                        @Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null) |
+                        @Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null) 
+
                     </div>
                 </td>
             </tr>

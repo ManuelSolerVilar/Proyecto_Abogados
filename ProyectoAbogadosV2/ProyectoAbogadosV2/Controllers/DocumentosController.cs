@@ -123,5 +123,53 @@ namespace ProyectoAbogadosV2.Controllers
             }
             base.Dispose(disposing);
         }
+        //GET SubirArchivo
+        public ActionResult SubirArchivo()
+        {
+            return View();
+        }
+        //POST SubirArchivo
+        [HttpPost]
+        public ActionResult SubirArchivo(HttpPostedFileBase file)
+        {
+            return Redirect(Request.UrlReferrer.ToString());
+            SubirArchivosModelo modelo = new SubirArchivosModelo();
+            //Si se ha seleccionado un fichero para subir entra si no salta
+            if (file != null)
+            {
+                //Me creo una variable string y le digo a la ruta que quiero meter el fichero.
+                String ruta = Server.MapPath("../Temp/");
+                //Creo una variable y le extraigo al fichero introducido su nombre
+                String nombre = System.IO.Path.GetFileNameWithoutExtension(ruta + file.FileName);
+                //Creo una variable y le extraigo la extensión
+                String extension = System.IO.Path.GetExtension(ruta + file.FileName);
+                //Si ruta mas nombre más extensión ya existe le cambias el nombre.
+                if (modelo.CheckIfExists(ruta + nombre + extension))//Bucle para cambiar el nombre
+                {
+                    //Cambio el nombre del fichero añadiendole la fecha de subida,
+                    //diciendole que la introduzca con guiones no con barras y fuera con barras fallaria.
+                    nombre += DateTime.Now.ToString("yyyy-MM-dd-H-mm-ss");
+                }
+                ruta += nombre + extension;
+                //Meto el fichero en la ruta con el nombre especificado.
+                modelo.SubirArchivo(ruta, file);
+                ViewBag.Error = modelo.error;
+                ViewBag.Correcto = modelo.Confirmacion;
+                //Intrucciones para guardar el documento en la base de datos.
+
+                //Creo un documento "doc"
+                Documento doc = new Documento();
+                doc.Documentacion = ruta;//la ruta del documento
+                doc.Actuacion = db.Actuacions.Find(1);//La actuacion con la que se relaciona el documento //TODO
+                doc.ExpedienteId = doc.Actuacion.ExpedienteId;//El id del expediente al que pertenece la actuacion
+                doc.Descripcion = Request.Form["description"];//La descripcion del documento especificada en el formulario
+                db.Documentoes.Add(doc);//Añadimos el documento a la tabla
+                db.SaveChanges();//Esto guarda los cambios en la BBDD
+            }
+
+            
+            //return View();
+
+        }
     }
 }

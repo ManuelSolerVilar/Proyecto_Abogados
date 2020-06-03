@@ -2,30 +2,265 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+
+<div class="container-fluid ml-4">
+    <div class="row ">
+        <div class="col-12 contenedor ml-1 mr-1">
+
+            <img src="~/Content/Imagenes/Agendas1280187.jpg" class="card-img-top" alt="...">
+            <p class="text-center centrado1 visible-lg hidden-md">SyS</p>
+            <p class="text-center centrado">ZONA PRIVADA</p>
+
+        </div>
+
+
+        <div class="col-10 text-center">
+            <h2 class="text-center">Bienvenido Jose, en esta zona puedes encontrar actualizada toda la información sobre los procediemientos en curso del despacho.</h2>
+            <p class="text-primary text-center">Elije tu consulta</p>
+
+        </div>
+    </div>
+
+    @if (Request.IsAuthenticated)
+    {
+        if (User.IsInRole("Usuario"))
+        {
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Actuación1280845.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("EXPEDIENTES", "Index", "Expedientes")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Actuación1280845.jpg" class="card-img-top" alt="...">
+
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4   pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Documento1280845.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("DOCUMENTOS", "SubirArchivo", "Documentos")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Abogado1280845.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("ABOGADOS", "Index", "Abogados")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+
+        }
+        if (User.IsInRole("Administrador"))
+        {
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Actuación1280845.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("EXPEDIENTES", "Index", "Expedientes")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Actuación1280845.jpg" class="card-img-top" alt="...">
+
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4   pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Documento1280845.jpg" class="card-img-top" alt="..." />
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("DOCUMENTOS", "SubirArchivo", "Documentos")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Cliente1280845.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("CLIENTES", "Index", "Clientes")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Abogado1280845.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("ABOGADOS", "Index", "Abogados")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+            <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
+                <div class="card bordecard">
+                    @*<a href="">*@
+                    <img src="~/Content/Imagenes/Abogado1280845.jpg" class="card-img-top" alt="...">
+                    <div class="card-body text-center">
+                        <h3 class="card-text pb-4 ">@Html.ActionLink("JURISDICCIONES", "Index", "Jurisdicciones")</h3>
+                    </div>
+                    @*</a>*@
+                </div>
+            </div>
+        }
+    }
+</div>
+    else
+    {
+@*<li>@Html.ActionLink("Abogados", "Index", "Abogados")</li>
+    <li>@Html.ActionLink("Expedientes", "Index", "Expedientes")</li>
+    <li>@Html.ActionLink("Documentos", "SubirArchivo", "Documentos")</li>
+    <li>@Html.ActionLink("Actuaciones", "Index", "Actuaciones")</li>
+    <li>@Html.ActionLink("Jurisdicciones", "Index", "Jurisdicciones")</li>*@
+    }
+@*
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="~/Content/Imagenes/Expediente.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">EXPEDIENTES</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="~/Content/Imagenes/Actuacion.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">ACTUACIONES</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="~/Content/Imagenes/Documento.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">DOCUMENTOS</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">CLIENTES</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card" style="width: 18rem;">
+                <img src="~/Content/Imagenes/Abogado.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">ABOGADOS</h5>
+                    <p class="card-text"></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@
+<br />
+<br />
+<div class="container-fluid">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="form-control" id="message" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">
+            <input type="text" class="btn btn-success" id="sendmessage" value="Enviar"/>
+        </div>
+        <h3>Mensajes de los participantes</h3>
+        <div class="row">
+            <ul id="discussion"></ul>
+        </div>
+    </div>
+    <input type="hidden" id="displayname" />
+
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+@*@section scripts
+    {
+    <script src="~/Scripts/jquery.signalR-2.4.1.js"></script>
+
+    <script src="/signalR/hubs"></script>
+
+    <script type="text/javascript">
+
+        $(function () {
+
+            var chat = $.connection.chatHub;
+
+            chat.client.sendChat = function (name, message) {
+                var divName = $("<div />").text(name).html();
+                var divMessage = $("<div />").text(message).html();
+
+                $("#discussion").append("<li><strong>" + divName + "<strong>" + divMessage + "</li>");
+            };
+            var nameOwner = prompt("Escribe tu nombre: ", "");
+            $("#displayname").val(nameOwver);
+
+            $("#message").focus();
+
+            $.connection.hub.start().done(function ()
+            {
+                $("#sendmessage").click(function ()
+                {
+                    var nameOwner = $("#displayname").val();
+                    var messageText = $("#message").val();
+
+                    chat.server.send(nameOwner, messageText);
+
+                    $("#message").val("").focus();
+                })
+
+            })
+
+
+        })
+
+    </script>*@
+}

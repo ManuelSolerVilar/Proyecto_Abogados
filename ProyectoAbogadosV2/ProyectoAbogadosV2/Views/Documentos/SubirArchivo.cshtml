@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "SubirArchivo";
+}
+
+<h2>SubirArchivo</h2>
+
+<h2 class="text-danger">@ViewBag.Error</h2>
+<h2 class="text-success">@ViewBag.Correcto</h2>
+
+<form method="post" enctype="multipart/form-data">
+    <input type="file" name="file" />
+    <input type="text" name="description" />
+    <button type="submit">Subir</button>
+</form>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

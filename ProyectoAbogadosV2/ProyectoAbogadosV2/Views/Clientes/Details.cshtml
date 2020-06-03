@@ -3,160 +3,186 @@
 @{
     ViewBag.Title = "Details";
 }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 ml-4 mr-4">
+                <h2>@Html.ActionLink("Cliente", "Index", "Clientes") / Detalle</h2>
+            </div>
+        </div>
+        <hr />
+        <div class="row pl-1 pr-1">
+            <div class="col-lg-3  col-md-6   col-sm-12     pt-2  bg-primary">
+                <dl class="dl-horizontal">
+                    <p class="color-grisletras">DATOS PERSONALES:</p>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </dt>
 
-<h2>Details</h2>
+                    <dd>
+                        @Html.DisplayFor(model => model.Nombre)
+                    </dd>
 
-<div>
-    <h4>Cliente</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Apellidos)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Apellidos)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Apellidos)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Apellidos)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.NifCliente)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.NifCliente)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.NifCliente)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-lg-3  col-md-6   col-sm-12   mb-1 pl-1 pr-1  pt-2 bg-primary">
+                <dl class="dl-horizontal">
+                    <p class="color-grisletras">CONTACTO:</p>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.MovilCliente)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.NifCliente)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.MovilCliente)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.MovilCliente)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FijoCliente)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.MovilCliente)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FijoCliente)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FijoCliente)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-lg-3  col-md-6   col-sm-12   mb-1 pl-1 pr-1  pt-2 bg-primary">
+                <dl class="dl-horizontal">
+                    <p class="color-grisletras">DATOS DESPACHO:</p>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FechaIngreso)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FijoCliente)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FechaIngreso)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaIngreso)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.FechaBaja)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaIngreso)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.FechaBaja)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Descripcion_Cliente)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Descripcion_Cliente)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaBaja)
-        </dt>
+                </dl>
+            </div>
+            <div class="col-lg-3  col-md-6   col-sm-12   mb-1   pt-2 bg-primary">
+                <dl class="dl-horizontal">
 
-        <dd>
-            @Html.DisplayFor(model => model.FechaBaja)
-        </dd>
+                    <p class="color-grisletras ">DIRECCIÓN:</p>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Direccion_Cliente)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Direccion_Cliente)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Poblacion_Cliente)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion_Cliente)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Poblacion_Cliente)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion_Cliente)
-        </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Cp_Cliente)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Direccion_Cliente)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Cp_Cliente)
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Direccion_Cliente)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Poblacion_Cliente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Poblacion_Cliente)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Cp_Cliente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Cp_Cliente)
-        </dd>
-
-    </dl>
-</div>
-@* Se añade código para presentar los expedientes del cliente seleccionado *@
-<div>
-    <h4>Expedientes asignados al cliente</h4>
-    <table class="table">
-        <tr>
-            <td>Titulo Expediente</td>
-            <td>Fecha Inicio</td>
-            <td>Fecha Cierre</td>
-            <td>Descripción</td>
-            <td>Cliente</td>
-            <td>Jurisdicción</td>
-            <td></td>
-        </tr>
-        @foreach (var item in Model.Expedientes)
-        {
+                </dl>
+            </div>
+        </div>
+        @* Se añade código para presentar los expedientes del cliente seleccionado *@
+    <div class="ml-4 mr-4">
+        <h4>Los expedientes de <strong> @Html.DisplayFor(model => model.Nombre)</strong> son:</h4>
+        <br />
+        <table class="table">
             <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TituloExpediente)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaInicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FechaCierre)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Descripcion)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Abogado.NombreAbogado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Jurisdiccion.Nombre)
-                </td>
-                <td>
-                    <div class="hidden-print">
-                        @Html.ActionLink("Edit", "Edit", "Expedientes", new { id = item.Id }, null) |
-                        @Html.ActionLink("Delete", "Delete", "Expedientes", new { id = item.Id }, null)
-                    </div>
-                </td>
+                <th>Titulo Expediente</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Cierre</th>
+                <th>Descripción</th>
+                <th>Cliente</th>
+                <th>Jurisdicción</th>
+                <th></th>
             </tr>
-        }
-    </table>
-</div>
-@* Se añade para poder imprimir la página *@
-<div class="hidden-print text-center">
-    <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
-</div>
-<p>
-    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            @foreach (var item in Model.Expedientes)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TituloExpediente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaCierre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Abogado.NombreAbogado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Jurisdiccion.Nombre)
+                    </td>
+                    <td>
+                        <div class="hidden-print">
+                            <button type="button" class="btn btn-xs ">@Html.ActionLink("CONSULTAR EXPEDIENTE ", "Details", "Expedientes", new { id = item.Id }, null)</button> |
+                            
+
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button> |
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null)</button>
+
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+        @* Se añade para poder imprimir la página *@
+        <div class="hidden-print text-center">
+            <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+        </div>
+        
+            <div class="hidden-print text-left">
+                @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+                <div class="btn btn-default">@Html.ActionLink(" Volver a Clientes", "Index")</div>
+        </div>
+    </div>
+    </div>
+        
+    
