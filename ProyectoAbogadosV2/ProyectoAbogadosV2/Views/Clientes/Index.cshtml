@@ -15,9 +15,9 @@
                     @Html.ActionLink("Nuevo Cliente", "Create")
                 </p>
             </div>
-            <div class="col-lg-12  ml-2 mr-4 ">
-                <table class="table table-hover">
-                    <tr>
+            <div class="col-lg-11 ml-3 mr-2">
+                <table class="table table-hover table-responsive">
+                    <tr class=" bg-grisclaro color-grisoscuro-letras">
                         <th class="">
                             @Html.DisplayNameFor(model => model.Nombre)
                         </th>
@@ -33,10 +33,10 @@
                         <th>
                             @Html.DisplayNameFor(model => model.MovilCliente)
                         </th>
-
+                        @*
                         <th class="visible-lg visible-md">
                             @Html.DisplayNameFor(model => model.FijoCliente)
-                        </th>
+                        </th>*@
 
                         <th class="hidden-xs">
                             @Html.DisplayNameFor(model => model.Email)
@@ -54,40 +54,41 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Apellidos)
-                            </td>
-                            <td class="visible-lg">
-                                @Html.DisplayFor(modelItem => item.NifCliente)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MovilCliente)
-                            </td>
-                            <td class="visible-lg visible-md">
-                                @Html.DisplayFor(modelItem => item.FijoCliente)
-                            </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Apellidos)
+                    </td>
+                    <td class="visible-lg">
+                        @Html.DisplayFor(modelItem => item.NifCliente)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MovilCliente)
+                    </td>
+                    @*
+                    <td class="visible-lg visible-md">
+                        @Html.DisplayFor(modelItem => item.FijoCliente)
+                    </td>*@
 
-                            <td class="hidden-xs">
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
+                    <td class="hidden-xs">
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
 
-                            <td class="visible-lg">
-                                @Html.DisplayFor(modelItem => item.Direccion_Cliente)
-                            </td>
-                            <td class="visible-lg">
-                                @Html.DisplayFor(modelItem => item.Poblacion_Cliente)
-                            </td>
+                    <td class="visible-lg">
+                        @Html.DisplayFor(modelItem => item.Direccion_Cliente)
+                    </td>
+                    <td class="visible-lg">
+                        @Html.DisplayFor(modelItem => item.Poblacion_Cliente)
+                    </td>
 
-                            <td>
-                                <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
-                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
-                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
-                            </td>
-                        </tr>
+                    <td>
+                        <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
+                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
+                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
+                    </td>
+                </tr>
                     }
 
                 </table>
