@@ -6,11 +6,12 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ProyectoAbogadosV2.Models;
 
 namespace ProyectoAbogadosV2.Controllers
 {
-    [Authorize(Roles = "Administrador")]
+    //[Authorize(Roles = "Administrador")]
     public class ClientesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -49,6 +50,8 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,NifCliente,MovilCliente,FijoCliente,FechaIngreso,FechaBaja,Email,Descripcion_Cliente,Direccion_Cliente,Poblacion_Cliente,Cp_Cliente")] Cliente cliente)
         {
+            cliente.Email = User.Identity.GetUserName();
+            
             if (ModelState.IsValid)
             {
                 db.Clientes.Add(cliente);
