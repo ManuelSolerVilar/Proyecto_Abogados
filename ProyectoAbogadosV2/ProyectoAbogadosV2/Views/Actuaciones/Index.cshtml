@@ -61,10 +61,16 @@
                                 @Html.DisplayFor(modelItem => item.NotificacionJuzgado)
                             </td>
                             <td>
-                                @Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) |
-                                @*@Html.ActionLink("DETALLE", "Details", new { id = item.Id }) |*@
-                                @Html.ActionLink("BORRAR", "Delete", new { id = item.Id }) |
-                                @Html.ActionLink("CONSULTAR SU EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)
+                                @if (User.IsInRole("Administrador"))
+                                {
+                                    @Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) <span>|</span>
+                                    @Html.ActionLink("BORRAR", "Delete", new { id = item.Id }) <span>|</span>
+                                    @Html.ActionLink("CONSULTAR SU EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)
+                                }
+                                @if (User.IsInRole("Usuario"))
+                                {
+                                    @Html.ActionLink("CONSULTAR SU EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)
+                                }
                             </td>
                         </tr>
                     }

@@ -13,15 +13,20 @@
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top ml-2 mr-2 grisletras">
         <div class="container-fluid bg-white color-enlacesgrisvioleta">
+            
             <div class="navbar-header ">
+
                 <button type="button" class="navbar-toggle colortortuga " data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                   
+
 
                 </button>
-                @Html.ActionLink("Logo/EnlaceDespacho", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                
+               @* <a class="navbar-brand" href="#">S</a>*@
+                @Html.ActionLink("SolerySoler Abogados", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
             </div>
             <div class="navbar-collapse collapse bg-white">
                 <ul class="nav navbar-nav ">
@@ -42,15 +47,16 @@
                             <li>@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</li>
                             <li>@Html.ActionLink("DOCUMENTOS", "Index", "Documentos")</li>
                             <li>@Html.ActionLink("JURISDICCIONES", "Index", "Jurisdicciones")</li>
+                            @* <li>@Html.ActionLink("REGISTRAR NUEVO CLIENTE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
                         }
                     }
                     else
                     {
                         @*<li>@Html.ActionLink("Abogados", "Index", "Abogados")</li>
-            <li>@Html.ActionLink("Expedientes", "Index", "Expedientes")</li>
-            <li>@Html.ActionLink("Documentos", "SubirArchivo", "Documentos")</li>
-            <li>@Html.ActionLink("Actuaciones", "Index", "Actuaciones")</li>
-            <li>@Html.ActionLink("Jurisdicciones", "Index", "Jurisdicciones")</li>*@
+                    <li>@Html.ActionLink("Expedientes", "Index", "Expedientes")</li>
+                    <li>@Html.ActionLink("Documentos", "SubirArchivo", "Documentos")</li>
+                    <li>@Html.ActionLink("Actuaciones", "Index", "Actuaciones")</li>
+                    <li>@Html.ActionLink("Jurisdicciones", "Index", "Jurisdicciones")</li>*@
                     }
 
                 </ul>

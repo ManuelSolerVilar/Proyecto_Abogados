@@ -17,6 +17,13 @@ namespace ProyectoAbogadosV2.Controllers
         // GET: Documentos
         public ActionResult Index()
         {
+            var expedientes = new List<string>();
+            var qryExpedientes = from d in db.Expedientes
+                                      orderby d.Id
+                                      select d.TituloExpediente;
+            expedientes.AddRange(qryExpedientes.Distinct());
+            ViewBag.ListaTipoAverias = new SelectList(expedientes);
+
             return View(db.Documentoes.ToList());
         }
 
@@ -132,7 +139,6 @@ namespace ProyectoAbogadosV2.Controllers
         [HttpPost]
         public ActionResult SubirArchivo(HttpPostedFileBase file)
         {
-            return Redirect(Request.UrlReferrer.ToString());
             SubirArchivosModelo modelo = new SubirArchivosModelo();
             //Si se ha seleccionado un fichero para subir entra si no salta
             if (file != null)
@@ -165,10 +171,10 @@ namespace ProyectoAbogadosV2.Controllers
                 doc.Descripcion = Request.Form["description"];//La descripcion del documento especificada en el formulario
                 db.Documentoes.Add(doc);//Añadimos el documento a la tabla
                 db.SaveChanges();//Esto guarda los cambios en la BBDD
-            }
+                return Redirect("./");
 
-            
-            //return View();
+            }
+            return View();
 
         }
     }

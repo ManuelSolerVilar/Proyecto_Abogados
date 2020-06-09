@@ -9,6 +9,7 @@
 <h2 class="text-success">@ViewBag.Correcto</h2>
 
 <form method="post" enctype="multipart/form-data">
+    @*Html.DropDownList("a",(IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string);*@
     <input type="file" name="file" />
     <input type="text" name="description" />
     <button type="submit">Subir</button>

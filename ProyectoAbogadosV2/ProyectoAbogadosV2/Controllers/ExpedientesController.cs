@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using ProyectoAbogadosV2.Models;
 
 namespace ProyectoAbogadosV2.Controllers
@@ -17,18 +18,49 @@ namespace ProyectoAbogadosV2.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Expedientes
-        public ActionResult Index(string strTipoJurisdiccion, string strCadenaBusqueda)
+        public ActionResult Index(string strTipoJurisdiccion, string strCadenaBusqueda, int? page,
+            string StrBusquedaActual, string strFiltroActual)
         {
-            var expedientes = db.Expedientes.Include(e => e.Abogado).Include(e => e.Cliente).Include(e => e.Jurisdiccion);
-            expedientes = expedientes.OrderByDescending(s => s.FechaInicio); //Para Ordenar por fecha de inicio del expediente
+            // Para mostrar la primera página cuando se ha introducido una cadena de búsqueda
+            if (strCadenaBusqueda != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                strCadenaBusqueda = StrBusquedaActual;
+            }
+            ViewBag.BusquedaActual = strCadenaBusqueda;
+            // Para mostrar la primera página cuando se ha cambiado la selección en el DropDownList
+            if (strTipoJurisdiccion != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                strTipoJurisdiccion = strFiltroActual;
+            }
+            ViewBag.FiltroActual = strTipoJurisdiccion;
 
-            // Para presentar los tipos de avería en la vista
+            var expedientes = db.Expedientes.Include(e => e.Abogado).Include(e => e.Cliente).Include(e => e.Jurisdiccion);
+
+            //Para Ordenar por fecha de inicio del expediente
+            expedientes = expedientes.OrderByDescending(s => s.FechaInicio); 
+
+            // Para presentar los tipos de Jurisdicciones en la vista
             var lstTipoJurisdiccion = new List<string>();
             var qryTipoJurisdiccion = from d in db.Expedientes
                                       orderby d.Jurisdiccion.Nombre
                                       select d.Jurisdiccion.Nombre;
+            lstTipoJurisdiccion.Add("Todas");
             lstTipoJurisdiccion.AddRange(qryTipoJurisdiccion.Distinct());
             ViewBag.ListaTipoAverias = new SelectList(lstTipoJurisdiccion);
+
+            if(!(User.Identity.Name== "admin@empresa.com"))//CAMBIAR
+            {
+                Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                expedientes = expedientes.Where(s => s.ClienteId == cliente.Id);
+            }
 
             if (!String.IsNullOrEmpty(strCadenaBusqueda))
             {
@@ -36,10 +68,17 @@ namespace ProyectoAbogadosV2.Controllers
             }
             if (!string.IsNullOrEmpty(strTipoJurisdiccion))
             {
+                if (strTipoJurisdiccion != "Todas") 
+                { 
                 expedientes = expedientes.Where(x => x.Jurisdiccion.Nombre == strTipoJurisdiccion);
+                }
             }
+            //Características de la paginación
+            int pageSize = 6;
+            int pageNumber = (page ?? 1);
+            return View(expedientes.ToPagedList(pageNumber, pageSize));
 
-            return View(expedientes.ToList());
+            //return View(expedientes.ToList());
         }
 
         // GET: Expedientes/Details/5
@@ -60,7 +99,6 @@ namespace ProyectoAbogadosV2.Controllers
 
         // GET: Expedientes/Create
         [Authorize(Roles = "Administrador")]
-
         public ActionResult Create()
         {
             ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado");
@@ -90,6 +128,7 @@ namespace ProyectoAbogadosV2.Controllers
         }
 
         // GET: Expedientes/Edit/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -127,6 +166,7 @@ namespace ProyectoAbogadosV2.Controllers
         }
 
         // GET: Expedientes/Delete/5
+        [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -143,6 +183,7 @@ namespace ProyectoAbogadosV2.Controllers
         // POST: Expedientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+
         public ActionResult DeleteConfirmed(int id)
         {
             Expediente expediente = db.Expedientes.Find(id);

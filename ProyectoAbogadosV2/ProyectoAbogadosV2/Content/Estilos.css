@@ -20,7 +20,13 @@ a:hover
         background-color: #0088ff !important;
         text-decoration: none;
 }
-
+a .circulo {
+    border:1px solid blue !important;
+    padding:2% !important;
+    background:blue;
+    color:white;
+    border-radius:50%;
+}
 .botonazulblanco {
     background-color: #0088ff !important;
     color: white !important;
@@ -53,7 +59,7 @@ a:hover
     color: #868686 !important;
     
 }
-.
+
 
 a  .color-enlacesgrisvioleta {
     color: #a3abcf !important;

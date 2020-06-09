@@ -133,10 +133,17 @@
 
                     <td>
                         <div class="hidden-print">
-                            @Html.ActionLink("CONSULTAR ACTUACIÓN", "Details", "Actuaciones", new { id = item.Id }, null) |
-                            @Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null) |
-                            @Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)
-
+                            
+                            @if (User.IsInRole("Administrador"))
+                            {
+                                @Html.ActionLink("CONSULTAR ACTUACIÓN", "Details", "Actuaciones", new { id = item.Id }, null) <span>|</span>
+                                @Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null) <span>|</span>
+                                @Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)
+                            }
+                            @if (User.IsInRole("Usuario"))
+                            {
+                                @Html.ActionLink("CONSULTAR ACTUACIÓN", "Details", "Actuaciones", new { id = item.Id }, null)
+                            }
                         </div>
                     </td>
                 </tr>

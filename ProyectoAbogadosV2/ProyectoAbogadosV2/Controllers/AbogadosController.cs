@@ -10,6 +10,7 @@ using ProyectoAbogadosV2.Models;
 
 namespace ProyectoAbogadosV2.Controllers
 {
+    [Authorize(Roles = "Administrador")]
     public class AbogadosController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
