@@ -133,11 +133,11 @@
         <table class="table table-hover table-responsive ml-2 mr-2">
             <tr class=" bg-grisclaro color-grisoscuro-letras">
                 <th>Titulo Expediente</th>
-                <th>Fecha Inicio</th>
-                <th>Fecha Cierre</th>
+                <th class="hidden-xs">Fecha Inicio</th>
+                <th class="visible-lg">Fecha Cierre</th>
                 <th>Descripción</th>
-                <th>Cliente</th>
-                <th>Jurisdicción</th>
+                <th >Abogado</th>
+                <th class="visible-lg">Jurisdicción</th>
                 <th></th>
             </tr>
             @foreach (var item in Model.Expedientes)
@@ -146,10 +146,10 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.TituloExpediente)
                     </td>
-                    <td>
+                    <td class="hidden-xs">
                         @Html.DisplayFor(modelItem => item.FechaInicio)
                     </td>
-                    <td>
+                    <td class="visible-lg">
                         @Html.DisplayFor(modelItem => item.FechaCierre)
                     </td>
                     <td>
@@ -158,16 +158,16 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Abogado.NombreAbogado)
                     </td>
-                    <td>
+                    <td class="visible-lg">
                         @Html.DisplayFor(modelItem => item.Jurisdiccion.Nombre)
                     </td>
                     <td>
                         <div class="hidden-print">
-                            <button type="button" class="btn btn-xs ">@Html.ActionLink("CONSULTAR EXPEDIENTE ", "Details", "Expedientes", new { id = item.Id }, null)</button> |
+                            <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE ", "Details", "Expedientes", new { id = item.Id }, null)</button> 
                             
 
-                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button> |
-                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null)</button>
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline hidden-xs	">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button> 
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline hidden-xs	">@Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null)</button>
 
                         </div>
                     </td>

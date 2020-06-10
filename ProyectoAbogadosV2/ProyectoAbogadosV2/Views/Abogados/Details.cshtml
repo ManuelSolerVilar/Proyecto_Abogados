@@ -115,8 +115,8 @@
                 <tr class=" bg-grisclaro color-grisoscuro-letras">
                     <td>Titulo Expediente</td>
                     <td>Fecha Inicio</td>
-                    <td>Fecha Cierre</td>
-                    <td>Descripción</td>
+                    <td class="visible-lg">Fecha Cierre</td>
+                    <td class="visible-lg">Descripción</td>
                     <td>Cliente</td>
                     <td>Jurisdicción</td>
                     <td></td>
@@ -130,10 +130,10 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.FechaInicio)
                         </td>
-                        <td>
+                        <td class="visible-lg">
                             @Html.DisplayFor(modelItem => item.FechaCierre)
                         </td>
-                        <td>
+                        <td class="visible-lg">
                             @Html.DisplayFor(modelItem => item.Descripcion)
                         </td>
                         <td>
@@ -144,9 +144,9 @@
                         </td>
                         <td>
                             <div class="hidden-print">
-                                @Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null) |
-                                @Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null) |
-                                @Html.ActionLink("CONSULTAR EXPEDIENTE ", "Details", "Expedientes", new { id = item.Id }, null)
+                                <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Expedientes", new { id = item.Id }, null)</button>
+                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button>
+                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null)</button>
                             </div>
                         </td>
                     </tr>

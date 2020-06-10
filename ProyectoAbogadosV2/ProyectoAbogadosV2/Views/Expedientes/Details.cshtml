@@ -108,8 +108,8 @@
                 <td>Fecha Inicio</td>
                 <td>Fecha Cierre</td>
                 <td>Descripción</td>
-                <td>Notificación Cliente</td>
-                <td>Notificación Juzgado</td>
+                <td class="visible-lg">Notificación Cliente</td>
+                <td class="visible-lg">Notificación Juzgado</td>
                 <td></td>
             </tr>
             @foreach (var item in Model.Actuaciones)
@@ -124,25 +124,25 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.Descripcion)
                     </td>
-                    <td>
+                    <td class="visible-lg">
                         @Html.DisplayFor(modelItem => item.NotificacionCliente)
                     </td>
-                    <td>
+                    <td class="visible-lg">
                         @Html.DisplayFor(modelItem => item.NotificacionJuzgado)
                     </td>
 
                     <td>
                         <div class="hidden-print">
-                            
+
                             @if (User.IsInRole("Administrador"))
                             {
-                                @Html.ActionLink("CONSULTAR ACTUACIÓN", "Details", "Actuaciones", new { id = item.Id }, null) <span>|</span>
-                                @Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null) <span>|</span>
-                                @Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)
+                            <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null)</button>
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)</button>
                             }
                             @if (User.IsInRole("Usuario"))
                             {
-                                @Html.ActionLink("CONSULTAR ACTUACIÓN", "Details", "Actuaciones", new { id = item.Id }, null)
+                                <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
                             }
                         </div>
                     </td>

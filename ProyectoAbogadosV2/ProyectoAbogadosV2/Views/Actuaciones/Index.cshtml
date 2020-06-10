@@ -15,25 +15,28 @@
 
                     @Html.ActionLink("Nueva Actuación", "Create")
                 </p>
-
+</div>
+            <div class="row">
+                
+                <div class="col-lg-10 col-lg-offset-1 col-md-12 ml-4 mr-4">
                 <table class="table table-hover table-responsive">
                     <tr class=" bg-grisclaro color-grisoscuro-letras">
                         <th>
                             @Html.DisplayNameFor(model => model.Expediente.TituloExpediente)
                         </th>
-                        <th>
+                        <th class="">
                             @Html.DisplayNameFor(model => model.FechaInicio)
                         </th>
-                        <th>
+                        <th class="visible-lg">
                             @Html.DisplayNameFor(model => model.FechaCierre)
                         </th>
                         <th>
                             @Html.DisplayNameFor(model => model.Descripcion)
                         </th>
-                        <th>
+                        <th class="visible-lg">
                             @Html.DisplayNameFor(model => model.NotificacionCliente)
                         </th>
-                        <th>
+                        <th class="visible-lg">
                             @Html.DisplayNameFor(model => model.NotificacionJuzgado)
                         </th>
                         <th></th>
@@ -41,38 +44,39 @@
 
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Expediente.TituloExpediente)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaInicio)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FechaCierre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Descripcion)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NotificacionCliente)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.NotificacionJuzgado)
-                            </td>
-                            <td>
-                                @if (User.IsInRole("Administrador"))
-                                {
-                                    @Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) <span>|</span>
-                                    @Html.ActionLink("BORRAR", "Delete", new { id = item.Id }) <span>|</span>
-                                    @Html.ActionLink("CONSULTAR SU EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)
-                                }
-                                @if (User.IsInRole("Usuario"))
-                                {
-                                    @Html.ActionLink("CONSULTAR SU EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)
-                                }
-                            </td>
-                        </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Expediente.TituloExpediente)
+                    </td>
+                    <td class="">
+                        @Html.DisplayFor(modelItem => item.FechaInicio)
+                    </td>
+                    <td class="visible-lg">
+                        @Html.DisplayFor(modelItem => item.FechaCierre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Descripcion)
+                    </td>
+                    <td class="visible-lg">
+                        @Html.DisplayFor(modelItem => item.NotificacionCliente)
+                    </td>
+                    <td class="visible-lg">
+                        @Html.DisplayFor(modelItem => item.NotificacionJuzgado)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Administrador"))
+                        {
+
+                            <button type="button" class="btn  btn-xs">@Html.ActionLink("VER EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null) </button>
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) </button>
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id }) </button>
+                        }
+                        @if (User.IsInRole("Usuario"))
+                        {
+                            <button type="button" class="btn  btn-xs">@Html.ActionLink("VER EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)</button>
+                        }
+                    </td>
+                </tr>
                     }
 
                 </table>
@@ -80,6 +84,7 @@
                 <div class="hidden-print text-center">
                     <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
                 </div>
+                    </div>
             </div>
 </div>
 </div>

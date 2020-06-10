@@ -14,6 +14,8 @@
                 <p>
                     @Html.ActionLink("Nuevo Documento", "SubirArchivo")
                 </p>
+            </div>
+            <div class="col-lg-11 ml-2 mr-2">
                 <table class="table table-hover">
                     <tr class=" bg-grisclaro color-grisoscuro-letras">
                         <th>
@@ -22,7 +24,7 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Descripcion)
                         </th>
-                        <th>
+                        <th class="visible-lg">
                             @Html.DisplayNameFor(model => model.Documentacion)
                         </th>
                         <th></th>
@@ -37,14 +39,22 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Descripcion)
                             </td>
-                            <td>
+                            <td class="visible-lg">
                                 @Html.DisplayFor(modelItem => item.Documentacion)
                             </td>
                             <td>
-                                @Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) |
-                                @Html.ActionLink("DETALLE", "Details", new { id = item.Id }) |
-                                @Html.ActionLink("BORRAR", "Delete", new { id = item.Id })
-                            </td>
+                                @if (User.IsInRole("Administrador"))
+                                {
+                                    <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
+                                    <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
+                                    <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
+                                }
+                                @if (User.IsInRole("Usuario"))
+                                { 
+                                    <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>                                
+                                }
+                                </td>
+
                         </tr>
                     }
 
@@ -52,6 +62,7 @@
                 @* Se añade para poder imprimir la página *@
                 <div class="hidden-print text-center">
                     <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+                </div>
                 </div>
             </div>
         </div>

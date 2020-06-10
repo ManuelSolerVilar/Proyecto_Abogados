@@ -25,7 +25,7 @@
                 </button>
                 
                @* <a class="navbar-brand" href="#">S</a>*@
-                @Html.ActionLink("SolerySoler Abogados", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Soler Abogados", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
 
             </div>
             <div class="navbar-collapse collapse bg-white">
@@ -37,16 +37,16 @@
                             <li>@Html.ActionLink("EXPEDIENTES", "Index", "Expedientes")</li>
                             <li>@Html.ActionLink("DOCUMENTOS", "Index", "Documentos")</li>
                             <li>@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</li>
-                            <li>@Html.ActionLink("CONTACTO", "Contact", "Home")</li>
+                            @*<li>@Html.ActionLink("CONTACTO", "Contact", "Home")</li>*@
                         }
                         if (User.IsInRole("Administrador"))
                         {
                             <li>@Html.ActionLink("CLIENTES", "Index", "Clientes")</li>
                             <li>@Html.ActionLink("ABOGADOS", "Index", "Abogados")</li>
                             <li>@Html.ActionLink("EXPEDIENTES", "Index", "Expedientes")</li>
-                            <li>@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</li>
-                            <li>@Html.ActionLink("DOCUMENTOS", "Index", "Documentos")</li>
-                            <li>@Html.ActionLink("JURISDICCIONES", "Index", "Jurisdicciones")</li>
+                            <li class="visible-lg">@Html.ActionLink("ACTUACIONES", "Index", "Actuaciones")</li>
+                            <li class="visible-lg">@Html.ActionLink("DOCUMENTOS", "Index", "Documentos")</li>
+                            <li class="visible-lg">@Html.ActionLink("JURISDICCIONES", "Index", "Jurisdicciones")</li>
                             @* <li>@Html.ActionLink("REGISTRAR NUEVO CLIENTE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>*@
                         }
                     }

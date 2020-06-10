@@ -32,109 +32,113 @@
                     <input type="submit" value="Buscar" />
 
                 </p>*/
-                <p class="ml-2 mt-2 mb-2">
-                    Jurisdicción: @Html.DropDownList("strTipoJurisdiccion", (IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string)
-                    Nombre del Cliente: @Html.TextBox("strCadenaBusqueda", ViewBag.BusquedaActual as string)
-                    <input type="submit" value="Buscar y/o filtrar" />
-                </p>
-            }
-            <table class="table table-hover table-responsive">
-                <tr class=" bg-grisclaro color-grisoscuro-letras">
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.Abogado.NombreAbogado)*@
-                        Abogado:
-                    </th>
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.Cliente.Nombre)*@
-                        Cliente:
-                    </th>
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.Jurisdiccion.Nombre)*@
-                        Jurisdicción:
-                    </th>
-                    <th>
-                        @*@Html.DisplayNameFor(model => model.TituloExpediente)*@
-                        Título Expediente:
-                    </th>
-                    <th>
-                        @* @Html.DisplayNameFor(model => model.FechaInicio)*@
-                        Fecha Inicio:
-                    </th>
-                    <th>
-                        @* @Html.DisplayNameFor(model => model.FechaCierre)*@
-                        Fecha Cierre:
-                    </th>
-                    <th>
-                        @* @Html.DisplayNameFor(model => model.Descripcion)*@
-                        Descripción:
-                    </th>
-                    <th>
-                        @* @Html.DisplayNameFor(model => model.ProvisionFondos)*@
-                        Provisión de Fondos:
-                    </th>
-                    <th>
-                        @* @Html.DisplayNameFor(model => model.TotalMinuta)*@
-                        Total Minuta:
-                    </th>
-                    <th></th>
-                </tr>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Abogado.NombreAbogado)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Jurisdiccion.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TituloExpediente)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaInicio)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaCierre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Descripcion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ProvisionFondos)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TotalMinuta)
-                        </td>
-                        <td>
-                            @if (User.IsInRole("Administrador"))
-                            {
-                                @Html.ActionLink("DETALLE", "Details", new { id = item.Id }) <span>|</span>
-                                @Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) <span>|</span>
-                                @Html.ActionLink("BORRAR", "Delete", new { id = item.Id })
-                            }
-                            @if (User.IsInRole("Usuario"))
-                            {
-                                @Html.ActionLink("DETALLE", "Details", new { id = item.Id })
-                            }
-                        </td>
-                    </tr>
-                }
-
-            </table>
-            <br />
-            @* Se muestra el número de páginas y el total de páginas *@
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
-            @* Se muestran los botones de paginación mediante el helper PagedListPager *@
-            @Html.PagedListPager(Model, page => Url.Action("Index",
-            new { page, strBusquedaActual = ViewBag.BusquedaActual, strFiltroActual = ViewBag.FiltroActual }))
-            @* Se añade para poder imprimir la página *@
-            <div class="hidden-print text-center">
-                <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+            <div class="row mt-2 mb-2 pl-4 pr-4">
+                <div class="col-lg-1 col-md-2 col-sm-5 mt-1 pt-1 pl-5">Jurisdicción:</div>
+                <div class="col-lg-1 col-md-3 col-sm-5 mt-1 pt-1 mr-2">@Html.DropDownList("strTipoJurisdiccion", (IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string):</div>
+                <div class="col-lg-1 col-md-2 col-sm-4 mt-1 pt-1 mr-1 pl-5">Nombre Cliente:</div>
+                <div class="col-lg-1 col-md-3 col-sm-4 mt-1 pt-1 ">@Html.TextBox("strCadenaBusqueda", ViewBag.BusquedaActual as string)</div>
+                <div class="col-lg-1 col-md-2 col-md-offset-4 col-sm-3 ml-4 pt-1  mt-1 tex-center"><input type="submit" value="Buscar y/o filtrar" /></div>
+                <div class="col-lg-5 col-md-2 col-sm-0"></div>
             </div>
-        </div>
-    </div>
+                
+                    }
+                    <table class="table table-hover table-responsive">
+                        <tr class=" bg-grisclaro color-grisoscuro-letras">
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Abogado.NombreAbogado)*@
+                                Abogado:
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.Cliente.Nombre)*@
+                                Cliente:
+                            </th>
+                            <th class="visible-lg">
+                                @*@Html.DisplayNameFor(model => model.Jurisdiccion.Nombre)*@
+                                Jurisdicción:
+                            </th>
+                            <th>
+                                @*@Html.DisplayNameFor(model => model.TituloExpediente)*@
+                                Título Expediente:
+                            </th>
+                            <th>
+                                @* @Html.DisplayNameFor(model => model.FechaInicio)*@
+                                Fecha Inicio:
+                            </th>
+                            <th class="visible-lg">
+                                @* @Html.DisplayNameFor(model => model.FechaCierre)*@
+                                Fecha Cierre:
+                            </th>
+                            <th class="visible-lg">
+                                @* @Html.DisplayNameFor(model => model.Descripcion)*@
+                                Descripción:
+                            </th>
+                            <th class="visible-lg">
+                                @* @Html.DisplayNameFor(model => model.ProvisionFondos)*@
+                                Provisión de Fondos:
+                            </th>
+                            <th class="visible-lg">
+                                @* @Html.DisplayNameFor(model => model.TotalMinuta)*@
+                                Total Minuta:
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Abogado.NombreAbogado)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                                </td>
+                                <td class="visible-lg">
+                                    @Html.DisplayFor(modelItem => item.Jurisdiccion.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.TituloExpediente)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                                </td>
+                                <td class="visible-lg">
+                                    @Html.DisplayFor(modelItem => item.FechaCierre)
+                                </td>
+                                <td class="visible-lg">
+                                    @Html.DisplayFor(modelItem => item.Descripcion)
+                                </td>
+                                <td class="visible-lg">
+                                    @Html.DisplayFor(modelItem => item.ProvisionFondos)
+                                </td>
+                                <td class="visible-lg">
+                                    @Html.DisplayFor(modelItem => item.TotalMinuta)
+                                </td>
+                                <td>
+                                    @if (User.IsInRole("Administrador"))
+                                    {
+                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) </button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
+                                    }
+                                    @if (User.IsInRole("Usuario"))
+                                    {
+                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+
+                    </table>
+                    <br />
+                    @* Se muestra el número de páginas y el total de páginas *@
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                    @* Se muestran los botones de paginación mediante el helper PagedListPager *@
+                    @Html.PagedListPager(Model, page => Url.Action("Index",
+                    new { page, strBusquedaActual = ViewBag.BusquedaActual, strFiltroActual = ViewBag.FiltroActual }))
+                    @* Se añade para poder imprimir la página *@
+                    <div class="hidden-print text-center">
+                        <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+                    </div>
+                </div>
+            </div>
 </div>
