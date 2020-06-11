@@ -11,9 +11,10 @@
         </div>
 
         <div class="col-6 ml-2 mr-2">
-            <p>
+            @*<p>
                 @Html.ActionLink("Nuevo Abogado", "Create")
-            </p>
+            </p>*@
+            <p>@Html.ActionLink("Nuevo Abogado", "Register2", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</p>
         </div>
 
 

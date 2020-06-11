@@ -50,8 +50,9 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nombre,Apellidos,NifCliente,MovilCliente,FijoCliente,FechaIngreso,FechaBaja,Email,Descripcion_Cliente,Direccion_Cliente,Poblacion_Cliente,Cp_Cliente")] Cliente cliente)
         {
-            cliente.Email = User.Identity.GetUserName();
-            
+            //cliente.Email = User.Identity.GetUserName(); Con esto obtengo el mail del cliente actualmente logueado
+            //En vez de coger el Mail del usuario logueado, lo obtengo del parametro de la vista anterior
+            cliente.Email= Request.QueryString["user"];
             if (ModelState.IsValid)
             {
                 db.Clientes.Add(cliente);

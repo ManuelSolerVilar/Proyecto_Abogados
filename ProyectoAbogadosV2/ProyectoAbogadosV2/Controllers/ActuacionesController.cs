@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.AspNet.Identity;
 using ProyectoAbogadosV2.Models;
 
 namespace ProyectoAbogadosV2.Controllers
@@ -17,23 +18,50 @@ namespace ProyectoAbogadosV2.Controllers
         // GET: Actuaciones
         public ActionResult Index()
         {
+            /* Intentar sacar el rol si no cuando meta abogados 
+             * como administradores va a petar. if (!(User.Identity.Name == "admin@empresa.com"))//CAMBIAR
+            {
+                Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                var actuacions = actuaciones.Where(s => s.ClienteId == cliente.Id);
+            }
+            // Se seleccionan los datos del empleado correspondiente al usuario actual
+            string wUsuario = User.Identity.GetUserName();
+            if ((User.Identity.Name == "admin@empresa.com"))//CAMBIAR
+            {*/
             var actuacions = db.Actuacions.Include(a => a.Expediente);
-            return View(actuacions.ToList());
+                return View(actuacions.ToList());
+            /*}
+            else 
+            {
+                Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                var actuacions = expedientes.Where(s => s.ClienteId == cliente.Id);
+                var actuacions = db.Actuacions.Include()
+                return View(actuacions.ToList());
+            }*/
+            
         }
 
         // GET: Actuaciones/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Actuacion actuacion = db.Actuacions.Find(id);
+                if (actuacion == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(actuacion);
             }
-            Actuacion actuacion = db.Actuacions.Find(id);
-            if (actuacion == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            return View(actuacion);
+                
         }
 
         // GET: Actuaciones/Create
@@ -50,6 +78,7 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ExpedienteId,FechaInicio,FechaCierre,Descripcion,NotificacionCliente,NotificacionJuzgado")] Actuacion actuacion)
         {
+            actuacion.ExpedienteId= int.Parse(Request.QueryString["idExpediente"]);
             if (ModelState.IsValid)
             {
                 db.Actuacions.Add(actuacion);

@@ -100,6 +100,10 @@
             </div>
             @* Se añade código para presentar los expedientes del cliente seleccionado *@
     <div class="col-10 ml-6 mr-6 mt-4 mb-2">
+        <div class="col-12 ml-4 mr-4">
+            <p>@Html.ActionLink("Nuevo Documento", "SubirArchivo", "Documentos", new { idExpediente = Model.Id }, null) </p>
+            <p>@Html.ActionLink("Nueva Actuacion", "Create", "Actuaciones", new { idExpediente = Model.Id }, null) </p>
+        </div>
         <h4><strong> Actuaciones </strong> asignadas al expediente:</h4>
         <br />
         <table class="table table-hover table-responsive ml-2 mr-2">
@@ -136,9 +140,10 @@
 
                             @if (User.IsInRole("Administrador"))
                             {
-                            <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
-                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null)</button>
-                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)</button>
+                                <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
+                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null)</button>
+                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)</button>
+
                             }
                             @if (User.IsInRole("Usuario"))
                             {

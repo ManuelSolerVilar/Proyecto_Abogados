@@ -166,8 +166,8 @@ namespace ProyectoAbogadosV2.Controllers
                 //Creo un documento "doc"
                 Documento doc = new Documento();
                 doc.Documentacion = ruta;//la ruta del documento
-                doc.Actuacion = db.Actuacions.Find(1);//La actuacion con la que se relaciona el documento //TODO
-                doc.ExpedienteId = doc.Actuacion.ExpedienteId;//El id del expediente al que pertenece la actuacion
+                //doc.Actuacion = db.Actuacions.Find(1);//La actuacion con la que se relaciona el documento //TODO
+                doc.ExpedienteId = int.Parse(Request.QueryString["idExpediente"]);//El id del expediente al que pertenece la actuacion
                 doc.Descripcion = Request.Form["description"];//La descripcion del documento especificada en el formulario
                 db.Documentoes.Add(doc);//Añadimos el documento a la tabla
                 db.SaveChanges();//Esto guarda los cambios en la BBDD

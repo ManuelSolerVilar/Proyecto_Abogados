@@ -79,6 +79,9 @@ namespace ProyectoAbogadosV2.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    /*ApplicationDbContext db = new ApplicationDbContext();
+                    Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                    return RedirectToAction("Home", "Index", new { nombreUsuario = cliente.Nombre });*/
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -159,15 +162,16 @@ namespace ProyectoAbogadosV2.Controllers
                     await this.UserManager.AddToRoleAsync(user.Id, "Usuario");
 
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
-
-                    return RedirectToAction("Index", "Home");
+                
+                    //Paso por parametro con new{user=user.Email}, el mail del usuario que acabamos de registrar en la tabla de autenticación
+                    return RedirectToAction("Create","Clientes",new { user=user.Email});
                 }
                 AddErrors(result);
             }
@@ -175,6 +179,57 @@ namespace ProyectoAbogadosV2.Controllers
             // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
             return View(model);
         }
+        //
+        // GET: /Account/Register2
+        [AllowAnonymous]
+        public ActionResult Register2()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Register2(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    // Asignar el rol "Usuario" al registrarse un nuevo usuario
+                    await this.UserManager.AddToRoleAsync(user.Id, "Administrador");
+
+
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // Para obtener más información sobre cómo habilitar la confirmación de cuentas y el restablecimiento de contraseña, visite https://go.microsoft.com/fwlink/?LinkID=320771
+                    // Enviar correo electrónico con este vínculo
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+
+                    return RedirectToAction("Create","Abogados", new { user = user.Email });
+                }
+                AddErrors(result);
+            }
+
+            // Si llegamos a este punto, es que se ha producido un error y volvemos a mostrar el formulario
+            return View(model);
+        }
+
+
+
+
+
+
+
+
+
+
 
         //
         // GET: /Account/ConfirmEmail

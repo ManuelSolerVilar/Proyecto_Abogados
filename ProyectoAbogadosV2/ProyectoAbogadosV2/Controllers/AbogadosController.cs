@@ -49,6 +49,8 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,NombreAbogado,ApellidosAbogado,NifAbogado,MovilAbogado,FijoAbogado,Email,Direccion_Cliente,Poblacion_Cliente,Cp_Cliente")] Abogado abogado)
         {
+            //En vez de coger el Mail del usuario logueado, lo obtengo del parametro de la vista anterior
+            abogado.Email = Request.QueryString["user"];
             if (ModelState.IsValid)
             {
                 db.Abogadoes.Add(abogado);
