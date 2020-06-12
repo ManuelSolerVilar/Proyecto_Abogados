@@ -11,8 +11,8 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top ml-2 mr-2 grisletras">
-        <div class="container-fluid bg-white color-enlacesgrisvioleta">
+    <div class="navbar navbar-inverse navbar-fixed-top ml-2 mr-2 bg-white">
+        <div class="container-fluid bg-white ">
             
             <div class="navbar-header ">
 
@@ -23,10 +23,10 @@
 
 
                 </button>
-                
-               @* <a class="navbar-brand" href="#">S</a>*@
-                @Html.ActionLink("Soler Abogados", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-
+                <div class="">
+                    @* <a class="navbar-brand" href="#">S</a>*@
+                    @Html.ActionLink("Soler Abogados", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
             </div>
             <div class="navbar-collapse collapse bg-white">
                 <ul class="nav navbar-nav ">
@@ -66,8 +66,8 @@
     </div>
     <div class="container-fluid body-content">
         @RenderBody()
-        <hr />
-        <footer class=" ml-2 mr-2">
+        
+        <footer class=" ml-2 mr-2 mt-2">
             <div class="container-fluid">
                 <div class="row bg-azuloscuro">
                     <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">

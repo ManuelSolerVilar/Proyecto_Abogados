@@ -21,79 +21,94 @@ namespace ProyectoAbogadosV2.Controllers
         public ActionResult Index(string strTipoJurisdiccion, string strCadenaBusqueda, int? page,
             string StrBusquedaActual, string strFiltroActual)
         {
-            // Para mostrar la primera página cuando se ha introducido una cadena de búsqueda
-            if (strCadenaBusqueda != null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                page = 1;
-            }
-            else
-            {
-                strCadenaBusqueda = StrBusquedaActual;
-            }
-            ViewBag.BusquedaActual = strCadenaBusqueda;
-            // Para mostrar la primera página cuando se ha cambiado la selección en el DropDownList
-            if (strTipoJurisdiccion != null)
-            {
-                page = 1;
-            }
-            else
-            {
-                strTipoJurisdiccion = strFiltroActual;
-            }
-            ViewBag.FiltroActual = strTipoJurisdiccion;
-
-            var expedientes = db.Expedientes.Include(e => e.Abogado).Include(e => e.Cliente).Include(e => e.Jurisdiccion);
-
-            //Para Ordenar por fecha de inicio del expediente
-            expedientes = expedientes.OrderByDescending(s => s.FechaInicio); 
-
-            // Para presentar los tipos de Jurisdicciones en la vista
-            var lstTipoJurisdiccion = new List<string>();
-            var qryTipoJurisdiccion = from d in db.Expedientes
-                                      orderby d.Jurisdiccion.Nombre
-                                      select d.Jurisdiccion.Nombre;
-            lstTipoJurisdiccion.Add("Todas");
-            lstTipoJurisdiccion.AddRange(qryTipoJurisdiccion.Distinct());
-            ViewBag.ListaTipoAverias = new SelectList(lstTipoJurisdiccion);
-
-            if(!(User.Identity.Name== "admin@empresa.com"))//CAMBIAR
-            {
-                Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
-                expedientes = expedientes.Where(s => s.ClienteId == cliente.Id);
-            }
-
-            if (!String.IsNullOrEmpty(strCadenaBusqueda))
-            {
-                expedientes = expedientes.Where(s => s.Cliente.Nombre.Contains(strCadenaBusqueda));
-            }
-            if (!string.IsNullOrEmpty(strTipoJurisdiccion))
-            {
-                if (strTipoJurisdiccion != "Todas") 
-                { 
-                expedientes = expedientes.Where(x => x.Jurisdiccion.Nombre == strTipoJurisdiccion);
+                // Para mostrar la primera página cuando se ha introducido una cadena de búsqueda
+                if (strCadenaBusqueda != null)
+                {
+                    page = 1;
                 }
-            }
-            //Características de la paginación
-            int pageSize = 6;
-            int pageNumber = (page ?? 1);
-            return View(expedientes.ToPagedList(pageNumber, pageSize));
+                else
+                {
+                    strCadenaBusqueda = StrBusquedaActual;
+                }
+                ViewBag.BusquedaActual = strCadenaBusqueda;
+                // Para mostrar la primera página cuando se ha cambiado la selección en el DropDownList
+                if (strTipoJurisdiccion != null)
+                {
+                    page = 1;
+                }
+                else
+                {
+                    strTipoJurisdiccion = strFiltroActual;
+                }
+                ViewBag.FiltroActual = strTipoJurisdiccion;
 
-            //return View(expedientes.ToList());
+                var expedientes = db.Expedientes.Include(e => e.Abogado).Include(e => e.Cliente).Include(e => e.Jurisdiccion);
+
+                //Para Ordenar por fecha de inicio del expediente
+                expedientes = expedientes.OrderByDescending(s => s.FechaInicio);
+
+                // Para presentar los tipos de Jurisdicciones en la vista
+                var lstTipoJurisdiccion = new List<string>();
+                var qryTipoJurisdiccion = from d in db.Expedientes
+                                          orderby d.Jurisdiccion.Nombre
+                                          select d.Jurisdiccion.Nombre;
+                lstTipoJurisdiccion.Add("Todas");
+                lstTipoJurisdiccion.AddRange(qryTipoJurisdiccion.Distinct());
+                ViewBag.ListaTipoAverias = new SelectList(lstTipoJurisdiccion);
+
+                if (!(User.Identity.Name == "admin@empresa.com"))//CAMBIAR
+                {
+                    Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                    expedientes = expedientes.Where(s => s.ClienteId == cliente.Id);
+                }
+
+                if (!String.IsNullOrEmpty(strCadenaBusqueda))
+                {
+                    expedientes = expedientes.Where(s => s.Cliente.Nombre.Contains(strCadenaBusqueda));
+                }
+                if (!string.IsNullOrEmpty(strTipoJurisdiccion))
+                {
+                    if (strTipoJurisdiccion != "Todas")
+                    {
+                        expedientes = expedientes.Where(x => x.Jurisdiccion.Nombre == strTipoJurisdiccion);
+                    }
+                }
+                //Características de la paginación
+                int pageSize = 6;
+                int pageNumber = (page ?? 1);
+                return View(expedientes.ToPagedList(pageNumber, pageSize));
+
+                //return View(expedientes.ToList());
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // GET: Expedientes/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Expediente expediente = db.Expedientes.Find(id);
+                if (expediente == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(expediente);
             }
-            Expediente expediente = db.Expedientes.Find(id);
-            if (expediente == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            return View(expediente);
+
         }
 
 
@@ -101,10 +116,17 @@ namespace ProyectoAbogadosV2.Controllers
         [Authorize(Roles = "Administrador")]
         public ActionResult Create()
         {
-            ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado");
-            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre");
-            ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre");
-            return View();
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado");
+                ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre");
+                ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre");
+                return View();
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // POST: Expedientes/Create
@@ -114,36 +136,50 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,TituloExpediente,FechaInicio,FechaCierre,Descripcion,AbogadoId,ClienteId,JurisdiccionId,ProvisionFondos,TotalMinuta")] Expediente expediente)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                db.Expedientes.Add(expediente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    db.Expedientes.Add(expediente);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado", expediente.AbogadoId);
-            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre", expediente.ClienteId);
-            ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre", expediente.JurisdiccionId);
-            return View(expediente);
+                ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado", expediente.AbogadoId);
+                ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre", expediente.ClienteId);
+                ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre", expediente.JurisdiccionId);
+                return View(expediente);
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // GET: Expedientes/Edit/5
         [Authorize(Roles = "Administrador")]
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Expediente expediente = db.Expedientes.Find(id);
+                if (expediente == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado", expediente.AbogadoId);
+                ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre", expediente.ClienteId);
+                ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre", expediente.JurisdiccionId);
+                return View(expediente);
             }
-            Expediente expediente = db.Expedientes.Find(id);
-            if (expediente == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado", expediente.AbogadoId);
-            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre", expediente.ClienteId);
-            ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre", expediente.JurisdiccionId);
-            return View(expediente);
         }
 
         // POST: Expedientes/Edit/5
@@ -153,32 +189,48 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,TituloExpediente,FechaInicio,FechaCierre,Descripcion,AbogadoId,ClienteId,JurisdiccionId,ProvisionFondos,TotalMinuta")] Expediente expediente)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                db.Entry(expediente).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(expediente).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado", expediente.AbogadoId);
+                ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre", expediente.ClienteId);
+                ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre", expediente.JurisdiccionId);
+                return View(expediente);
             }
-            ViewBag.AbogadoId = new SelectList(db.Abogadoes, "Id", "NombreAbogado", expediente.AbogadoId);
-            ViewBag.ClienteId = new SelectList(db.Clientes, "Id", "Nombre", expediente.ClienteId);
-            ViewBag.JurisdiccionId = new SelectList(db.Jurisdiccions, "Id", "Nombre", expediente.JurisdiccionId);
-            return View(expediente);
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
         }
 
         // GET: Expedientes/Delete/5
         [Authorize(Roles = "Administrador")]
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Expediente expediente = db.Expedientes.Find(id);
+                if (expediente == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(expediente);
             }
-            Expediente expediente = db.Expedientes.Find(id);
-            if (expediente == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            return View(expediente);
+
         }
         // POST: Expedientes/Delete/5
         [HttpPost, ActionName("Delete")]
@@ -186,10 +238,18 @@ namespace ProyectoAbogadosV2.Controllers
 
         public ActionResult DeleteConfirmed(int id)
         {
-            Expediente expediente = db.Expedientes.Find(id);
-            db.Expedientes.Remove(expediente);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                Expediente expediente = db.Expedientes.Find(id);
+                db.Expedientes.Remove(expediente);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
         }
 
         protected override void Dispose(bool disposing)

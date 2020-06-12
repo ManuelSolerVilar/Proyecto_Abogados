@@ -6,20 +6,21 @@
     <div class="container-fluid ">
         <div class="row">
 
-            <div class="col-12 bg-azulmarino ml-2 mr-2">
+            <div class="col-12 bg-azulmarino ml-2 mr-2 mt-1 mb-1 pl-1 pt-1 pb-1">
                 <h2 class="text-white">Listado de Clientes</h2>
             </div>
 
-            <div class="col-6 ml-2 mr-2">
-                <p>@Html.ActionLink("NUEVO CLIENTE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</p>
-
+            <div class="col-12 ml-2 mr-2">
+                <h5 class="pl-2 pb-1 pt-1" >
+                    @Html.ActionLink("NUEVO CLIENTE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
+                 </h5>
                 @*
                 <p>
                     @Html.ActionLink("Nuevo Cliente", "Create")
                 </p>
                 *@
-            </div>
-            <div class="col-lg-11 ml-3 mr-2">
+            </div>        
+            <div class="col-lg-10 col-lg-offset-1">
                 <table class="table table-hover table-responsive table-condensed">
                     <tr class=" bg-grisclaro color-grisoscuro-letras">
                         <th class="">
@@ -97,7 +98,7 @@
 
                 </table>
                 @* Se añade para poder imprimir la página *@
-                <div class="hidden-print text-center">
+                <div class="hidden-print text-center mt-5 mb-2">
                     <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
                 </div>
             </div>

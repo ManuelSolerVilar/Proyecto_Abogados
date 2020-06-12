@@ -35,5 +35,7 @@ namespace ProyectoAbogadosV2.Models
         public virtual Jurisdiccion Jurisdiccion { get; set; }
 
         public virtual ICollection<Actuacion> Actuaciones { get; set; }
+
+        //public virtual ICollection<>
     }
 }

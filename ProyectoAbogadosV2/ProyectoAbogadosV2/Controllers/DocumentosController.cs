@@ -17,35 +17,57 @@ namespace ProyectoAbogadosV2.Controllers
         // GET: Documentos
         public ActionResult Index()
         {
-            var expedientes = new List<string>();
-            var qryExpedientes = from d in db.Expedientes
-                                      orderby d.Id
-                                      select d.TituloExpediente;
-            expedientes.AddRange(qryExpedientes.Distinct());
-            ViewBag.ListaTipoAverias = new SelectList(expedientes);
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                var expedientes = new List<string>();
+                var qryExpedientes = from d in db.Expedientes
+                                     orderby d.Id
+                                     select d.TituloExpediente;
+                expedientes.AddRange(qryExpedientes.Distinct());
+                ViewBag.ListaTipoAverias = new SelectList(expedientes);
 
-            return View(db.Documentoes.ToList());
+                return View(db.Documentoes.ToList());
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            
         }
 
         // GET: Documentos/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Documento documento = db.Documentoes.Find(id);
+                if (documento == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(documento);
             }
-            Documento documento = db.Documentoes.Find(id);
-            if (documento == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            return View(documento);
         }
 
         // GET: Documentos/Create
         public ActionResult Create()
         {
-            return View();
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                return View();
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // POST: Documentos/Create
@@ -55,29 +77,44 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ExpedienteId,Descripcion,Documentacion")] Documento documento)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                db.Documentoes.Add(documento);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Documentoes.Add(documento);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(documento);
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
             }
 
-            return View(documento);
         }
 
         // GET: Documentos/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Documento documento = db.Documentoes.Find(id);
+                if (documento == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(documento);
             }
-            Documento documento = db.Documentoes.Find(id);
-            if (documento == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            return View(documento);
         }
 
         // POST: Documentos/Edit/5
@@ -87,28 +124,42 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ExpedienteId,Descripcion,Documentacion")] Documento documento)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                db.Entry(documento).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(documento).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(documento);
             }
-            return View(documento);
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // GET: Documentos/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Documento documento = db.Documentoes.Find(id);
+                if (documento == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(documento);
             }
-            Documento documento = db.Documentoes.Find(id);
-            if (documento == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            return View(documento);
         }
 
         // POST: Documentos/Delete/5
@@ -116,10 +167,17 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Documento documento = db.Documentoes.Find(id);
-            db.Documentoes.Remove(documento);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                Documento documento = db.Documentoes.Find(id);
+                db.Documentoes.Remove(documento);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         protected override void Dispose(bool disposing)
@@ -133,49 +191,65 @@ namespace ProyectoAbogadosV2.Controllers
         //GET SubirArchivo
         public ActionResult SubirArchivo()
         {
-            return View();
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                return View();
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
+
+
         }
         //POST SubirArchivo
         [HttpPost]
         public ActionResult SubirArchivo(HttpPostedFileBase file)
         {
-            SubirArchivosModelo modelo = new SubirArchivosModelo();
-            //Si se ha seleccionado un fichero para subir entra si no salta
-            if (file != null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                //Me creo una variable string y le digo a la ruta que quiero meter el fichero.
-                String ruta = Server.MapPath("../Temp/");
-                //Creo una variable y le extraigo al fichero introducido su nombre
-                String nombre = System.IO.Path.GetFileNameWithoutExtension(ruta + file.FileName);
-                //Creo una variable y le extraigo la extensión
-                String extension = System.IO.Path.GetExtension(ruta + file.FileName);
-                //Si ruta mas nombre más extensión ya existe le cambias el nombre.
-                if (modelo.CheckIfExists(ruta + nombre + extension))//Bucle para cambiar el nombre
+                SubirArchivosModelo modelo = new SubirArchivosModelo();
+                //Si se ha seleccionado un fichero para subir entra si no salta
+                if (file != null)
                 {
-                    //Cambio el nombre del fichero añadiendole la fecha de subida,
-                    //diciendole que la introduzca con guiones no con barras y fuera con barras fallaria.
-                    nombre += DateTime.Now.ToString("yyyy-MM-dd-H-mm-ss");
+                    //Me creo una variable string y le digo a la ruta que quiero meter el fichero.
+                    String ruta = Server.MapPath("../Temp/");
+                    //Creo una variable y le extraigo al fichero introducido su nombre
+                    String nombre = System.IO.Path.GetFileNameWithoutExtension(ruta + file.FileName);
+                    //Creo una variable y le extraigo la extensión
+                    String extension = System.IO.Path.GetExtension(ruta + file.FileName);
+                    //Si ruta mas nombre más extensión ya existe le cambias el nombre.
+                    if (modelo.CheckIfExists(ruta + nombre + extension))//Bucle para cambiar el nombre
+                    {
+                        //Cambio el nombre del fichero añadiendole la fecha de subida,
+                        //diciendole que la introduzca con guiones no con barras y fuera con barras fallaria.
+                        nombre += DateTime.Now.ToString("yyyy-MM-dd-H-mm-ss");
+                    }
+                    ruta += nombre + extension;
+                    //Meto el fichero en la ruta con el nombre especificado.
+                    modelo.SubirArchivo(ruta, file);
+                    ViewBag.Error = modelo.error;
+                    ViewBag.Correcto = modelo.Confirmacion;
+                    //Intrucciones para guardar el documento en la base de datos.
+
+                    //Creo un documento "doc"
+                    Documento doc = new Documento();
+                    doc.Documentacion = ruta;//la ruta del documento
+                                             //doc.Actuacion = db.Actuacions.Find(1);//La actuacion con la que se relaciona el documento //TODO
+                    doc.ExpedienteId = int.Parse(Request.QueryString["idExpediente"]);//El id del expediente al que pertenece la actuacion
+                    doc.Descripcion = Request.Form["description"];//La descripcion del documento especificada en el formulario
+                    db.Documentoes.Add(doc);//Añadimos el documento a la tabla
+                    db.SaveChanges();//Esto guarda los cambios en la BBDD
+                    return Redirect("./");
+
                 }
-                ruta += nombre + extension;
-                //Meto el fichero en la ruta con el nombre especificado.
-                modelo.SubirArchivo(ruta, file);
-                ViewBag.Error = modelo.error;
-                ViewBag.Correcto = modelo.Confirmacion;
-                //Intrucciones para guardar el documento en la base de datos.
-
-                //Creo un documento "doc"
-                Documento doc = new Documento();
-                doc.Documentacion = ruta;//la ruta del documento
-                //doc.Actuacion = db.Actuacions.Find(1);//La actuacion con la que se relaciona el documento //TODO
-                doc.ExpedienteId = int.Parse(Request.QueryString["idExpediente"]);//El id del expediente al que pertenece la actuacion
-                doc.Descripcion = Request.Form["description"];//La descripcion del documento especificada en el formulario
-                db.Documentoes.Add(doc);//Añadimos el documento a la tabla
-                db.SaveChanges();//Esto guarda los cambios en la BBDD
-                return Redirect("./");
-
+                return View();
             }
-            return View();
-
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
     }
 }

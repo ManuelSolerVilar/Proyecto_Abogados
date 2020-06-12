@@ -1,42 +1,56 @@
 ﻿body {
 }
+.bold {
+    font-weight: bold !important;
+}
 .bg-white {
-    background-color: white !important;
+    
+    color: white !important;
+    
 }
 .text-white {
-    color:white !important;
+    color: white !important;
+    
+}
+h2 {padding:0% !important;
+    margin:0% !important;
 }
 .grisletras 
 {
     color: blue !important;
 }
-a 
-{
-    color: #747474 !important;
+.pruebacolores a {
+   
 }
-a:hover 
-{
-        color: white !important;
-        background-color: #0088ff !important;
-        text-decoration: none;
+.border {
+    border-bottom:none;
 }
-a .circulo {
-    border:1px solid blue !important;
-    padding:2% !important;
-    background:blue;
-    color:white;
-    border-radius:50%;
+.navbar-brand {
+    color: #707070 !important;
+    
 }
+a:hover {
+    color: white !important;
+    background-color: #0088ff !important;
+    text-decoration: none !important;
+}
+   
+
 .botonazulblanco {
     background-color: #0088ff !important;
     color: white !important;
 }
 .bg-azulmarino {
     background-color: #0088ff !important;
+    
 }
    
 .bg-white {
     background-color:white !important;
+}
+.color-azuloscuro {
+    color: rgb(1,46,128);
+    text-transform: uppercase;
 }
 .bg-azuloscuro {
     background-color: #237ab9;

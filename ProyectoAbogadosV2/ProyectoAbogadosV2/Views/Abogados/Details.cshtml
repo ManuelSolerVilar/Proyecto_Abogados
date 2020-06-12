@@ -4,101 +4,98 @@
     ViewBag.Title = "Details";
 }
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 ml-4 mr-4">
+        <div class="row pl-3 pr-3 ">
+            <div class="col-12   mt-2   pt-2 pl-3 pb-1 bg-grisclaro">
                 <h2>@Html.ActionLink("Abogado", "Index", "Abogados") / Detalle</h2>
             </div>
-        </div>
-        <hr />
-    </div>
-    <div class="row pl-2 pr-2 ">
-        <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
-            <p class="color-grisoscuro-letras">DATOS PERSONALES:</p>
+            <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
+                <p class="color-grisoscuro-letras">DATOS PERSONALES:</p>
 
-            <dl class="dl-horizontal">
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.NombreAbogado)
-                </dt>
+                <dl class="dl-horizontal">
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.NombreAbogado)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.NombreAbogado)
-                </dd>
+                    <dd class="color-azuloscuro bold">
+                        @Html.DisplayFor(model => model.NombreAbogado)
+                    </dd>
 
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.ApellidosAbogado)
-                </dt>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.ApellidosAbogado)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.ApellidosAbogado)
-                </dd>
+                    <dd class="color-azuloscuro bold">
+                        @Html.DisplayFor(model => model.ApellidosAbogado)
+                    </dd>
 
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.NifAbogado)
-                </dt>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.NifAbogado)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.NifAbogado)
-                </dd>
-            </dl>
-        </div>
-        <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
-            <p class="color-grisoscuro-letras">CONTACTO:</p>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.NifAbogado)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
+                <p class="color-grisoscuro-letras">CONTACTO:</p>
 
-            <dl class="dl-horizontal">
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.MovilAbogado)
-                </dt>
+                <dl class="dl-horizontal">
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.MovilAbogado)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.MovilAbogado)
-                </dd>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.MovilAbogado)
+                    </dd>
 
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.FijoAbogado)
-                </dt>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.FijoAbogado)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.FijoAbogado)
-                </dd>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.FijoAbogado)
+                    </dd>
 
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.Email)
-                </dt>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.Email)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.Email)
-                </dd>
-            </dl>
-        </div>
-        <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
-            <p class="color-grisoscuro-letras">DATOS DESPACHO:</p>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
+                <p class="color-grisoscuro-letras">DATOS DESPACHO:</p>
 
-            <dl class="dl-horizontal">
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.Direccion_Cliente)
-                </dt>
+                <dl class="dl-horizontal">
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.Direccion_Cliente)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.Direccion_Cliente)
-                </dd>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.Direccion_Cliente)
+                    </dd>
 
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.Poblacion_Cliente)
-                </dt>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.Poblacion_Cliente)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.Poblacion_Cliente)
-                </dd>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.Poblacion_Cliente)
+                    </dd>
 
-                <dt class="color-grisoscuro-letras1">
-                    @Html.DisplayNameFor(model => model.Cp_Cliente)
-                </dt>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.Cp_Cliente)
+                    </dt>
 
-                <dd class="color-grisoscuro-letras2">
-                    @Html.DisplayFor(model => model.Cp_Cliente)
-                </dd>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.Cp_Cliente)
+                    </dd>
 
-            </dl>
+                </dl>
+            </div>
         </div>
     </div>
         @* Se añade código para presentar los expedientes del cliente seleccionado *@

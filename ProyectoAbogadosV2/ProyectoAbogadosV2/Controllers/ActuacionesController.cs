@@ -28,8 +28,15 @@ namespace ProyectoAbogadosV2.Controllers
             string wUsuario = User.Identity.GetUserName();
             if ((User.Identity.Name == "admin@empresa.com"))//CAMBIAR
             {*/
-            var actuacions = db.Actuacions.Include(a => a.Expediente);
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                var actuacions = db.Actuacions.Include(a => a.Expediente);
                 return View(actuacions.ToList());
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
             /*}
             else 
             {
@@ -38,7 +45,7 @@ namespace ProyectoAbogadosV2.Controllers
                 var actuacions = db.Actuacions.Include()
                 return View(actuacions.ToList());
             }*/
-            
+
         }
 
         // GET: Actuaciones/Details/5
@@ -61,14 +68,21 @@ namespace ProyectoAbogadosV2.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
-                
+
         }
 
         // GET: Actuaciones/Create
         public ActionResult Create()
         {
-            ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente");
-            return View();
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente");
+                return View();
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         // POST: Actuaciones/Create
@@ -78,32 +92,49 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,ExpedienteId,FechaInicio,FechaCierre,Descripcion,NotificacionCliente,NotificacionJuzgado")] Actuacion actuacion)
         {
-            actuacion.ExpedienteId= int.Parse(Request.QueryString["idExpediente"]);
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                db.Actuacions.Add(actuacion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                actuacion.ExpedienteId = int.Parse(Request.QueryString["idExpediente"]);
+                if (ModelState.IsValid)
+                {
+                    db.Actuacions.Add(actuacion);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente", actuacion.ExpedienteId);
+                return View(actuacion);
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
             }
 
-            ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente", actuacion.ExpedienteId);
-            return View(actuacion);
         }
 
         // GET: Actuaciones/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Actuacion actuacion = db.Actuacions.Find(id);
+                if (actuacion == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente", actuacion.ExpedienteId);
+                return View(actuacion);
             }
-            Actuacion actuacion = db.Actuacions.Find(id);
-            if (actuacion == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente", actuacion.ExpedienteId);
-            return View(actuacion);
+
         }
 
         // POST: Actuaciones/Edit/5
@@ -113,29 +144,44 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,ExpedienteId,FechaInicio,FechaCierre,Descripcion,NotificacionCliente,NotificacionJuzgado")] Actuacion actuacion)
         {
-            if (ModelState.IsValid)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                db.Entry(actuacion).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(actuacion).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente", actuacion.ExpedienteId);
+                return View(actuacion);
             }
-            ViewBag.ExpedienteId = new SelectList(db.Expedientes, "Id", "TituloExpediente", actuacion.ExpedienteId);
-            return View(actuacion);
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
+
         }
 
         // GET: Actuaciones/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Actuacion actuacion = db.Actuacions.Find(id);
+                if (actuacion == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(actuacion);
             }
-            Actuacion actuacion = db.Actuacions.Find(id);
-            if (actuacion == null)
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
-                return HttpNotFound();
+                return RedirectToAction("Login", "Account");
             }
-            return View(actuacion);
         }
 
         // POST: Actuaciones/Delete/5
@@ -143,12 +189,19 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Actuacion actuacion = db.Actuacions.Find(id);
-            db.Actuacions.Remove(actuacion);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            {
+                Actuacion actuacion = db.Actuacions.Find(id);
+                db.Actuacions.Remove(actuacion);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            {
+                return RedirectToAction("Login", "Account");
+            }
 
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)
