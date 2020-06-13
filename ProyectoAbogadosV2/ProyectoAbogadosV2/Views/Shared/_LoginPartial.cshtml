@@ -10,7 +10,7 @@
             @*new ApplicationDbContext().Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault().Name)*@
             @Html.ActionLink(@*"Hola"+*@ User.Identity.GetUserName()@* + " !"*@, "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">CERRAR</a></li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">SALIR</a></li>
     </ul>
     }
 }

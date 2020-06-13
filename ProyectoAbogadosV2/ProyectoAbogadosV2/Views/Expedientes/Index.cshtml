@@ -33,6 +33,8 @@
                     <input type="submit" value="Buscar" />
 
                 </p>*/
+                if (User.IsInRole("Administrador"))
+                {
                 <div class="row mt-2 mb-2 pl-4 pr-4">
                     <div class="col-lg-1 col-md-2 col-sm-5 mt-1 pt-1 pl-5">Jurisdicción:</div>
                     <div class="col-lg-1 col-md-3 col-sm-5 mt-1 pt-1 mr-2">@Html.DropDownList("strTipoJurisdiccion", (IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string):</div>
@@ -41,6 +43,7 @@
                     <div class="col-lg-1 col-md-2 col-md-offset-4 col-sm-3 ml-4 pt-1  mt-1 tex-center"><input type="submit" value="Buscar y/o filtrar" /></div>
                     <div class="col-lg-5 col-md-2 col-sm-0"></div>
                 </div>
+                }
 
             }
             <table class="table table-hover table-responsive">

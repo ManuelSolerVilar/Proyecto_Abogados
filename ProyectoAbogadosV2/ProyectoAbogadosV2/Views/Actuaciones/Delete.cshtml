@@ -3,70 +3,86 @@
 @{
     ViewBag.Title = "Delete";
 }
-
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Actuacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Expediente.TituloExpediente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Expediente.TituloExpediente)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaInicio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaInicio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCierre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCierre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NotificacionCliente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NotificacionCliente)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NotificacionJuzgado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NotificacionJuzgado)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+<div class="container-fluid">
+    <div class="row ">
+        <div class="col-12 ml-2 mr-2 mt-1  pt-1 pl-2 pb-1 bg-grisclaro">
+            <h2>@Html.ActionLink("Actuación", "Index", "Actuaciones") / Eliminar</h2>
         </div>
-    }
+        <div class="col-12 ml-2 mr-2  mb-1 pt-1 pl-2 pb-1 bg-grisclaro">
+            <h3 class="text-danger">¿Está seguro que desea eliminar " @Html.DisplayFor(model => model.Descripcion) "?</h3>
+        </div>
+        <div class="bg-grisclaro mt-2 mb-2 pt-1 pb-1 col-lg-4 col-lg-offset-2 col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-2 col-xs-10 col-xs-offset-1 ">
+            <dl class="dl-horizontal">
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Descripcion)
+                </dt>
+
+                <dd class="color-azuloscuro">
+                    @Html.DisplayFor(model => model.Descripcion)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Expediente.TituloExpediente)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Expediente.TituloExpediente)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FechaInicio)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FechaInicio)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.FechaCierre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.FechaCierre)
+                </dd>
+
+
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NotificacionCliente)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NotificacionCliente)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NotificacionJuzgado)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.NotificacionJuzgado)
+                </dd>
+
+            </dl>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-actions no-color text-center">
+
+                    <input type="submit" value="ELIMINAR" class="btn btn-default btn-danger" />
+
+                </div>
+                
+
+            }
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-1">
+            <h5 class="pl-4 ">
+                @Html.ActionLink("VOLVER A ACTUACIONES", "Index")
+            </h5>
+        </div>
+
+    </div>
 </div>
