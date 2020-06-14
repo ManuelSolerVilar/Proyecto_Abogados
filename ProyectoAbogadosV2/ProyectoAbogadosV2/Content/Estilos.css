@@ -39,9 +39,13 @@ a:hover {
 }
 .bg-azulmarino {
     background-color: #0088ff !important;    
-}   
+}
+.bg-azulmarino-degradado {
+    background-color: #0088ff !important;
+    background: linear-gradient(45deg, rgba(0,123,255,1) 0%, rgba(0,123,255,1) 19%, rgba(0,212,255,1) 100%);
+}
 .bg-white {
-    background-color:white !important;
+    background-color: white !important;
 }
 .color-azuloscuro {
     color: rgb(1,46,128);
@@ -49,6 +53,23 @@ a:hover {
 }
 .bg-azuloscuro {
     background-color: #237ab9;
+}
+.bg-azuloscuro-footer {
+    background-color: rgb(0,123,255) !important;
+    background: linear-gradient(0deg, rgba(0,123,255,1) 0%, rgba(0,111,230,1) 20%, rgba(0,98,204,1) 100%) !important;
+
+}
+.colorletrasazul {
+    color: rgb(0,123,255) !important;
+
+}
+.bg-azul-oscuro {
+    background-color: rgb(0,123,255) !important;
+    color:white !important;
+}
+.bg-azul-oscuro:hover {
+    background-color: #006FE6 !important;
+    color: white !important;
 }
 .bg-grisclaro {
     background-color: #f5f5f5 !important;
@@ -266,8 +287,20 @@ fs15 {
     position: relative;
     
 }
+/*
+.clip {
+    clip-path: polygon(0 100%, 100% 0, 100% 100%, 0 100%);
+}
+.clip2 {
+    clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 25% 49%);
+    background-image: url('Imagenes/Abogado1280845.jpg');
+}*/
+.bordes {
+    border-bottom-color:#007BFF !important;
+    border:initial;
+    border-bottom:solid;
 
-
+}
 
 .centrado {
     position: absolute;

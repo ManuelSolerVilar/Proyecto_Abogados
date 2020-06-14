@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-12 contenedor ml-1 mr-1">
 
-                <img src="~/Content/Imagenes/Agendas1280187.jpg" class="card-img-top img-responsive" alt="...">
+                <img src="~/Content/Imagenes/Agendas1280187.jpg" class="card-img-top img-fluid" alt="...">
                 <p class="text-center centrado1 visible-lg hidden-md">SyS</p>
                 <p class="text-center centrado">ZONA PRIVADA</p>
 
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-0"></div>
             <div class="col-lg-10 col-md-10 col-sm-12">
-                <div class="row pl-5 pr-5 pt-4 pb-4 ">
+                <div class="row pl-5 pr-5 pt-4 ">
                     @if (Request.IsAuthenticated)
                     {
                         if (User.IsInRole("Usuario"))
@@ -69,11 +69,13 @@
                         }
                         if (User.IsInRole("Administrador"))
                         {
-                            <div class="col-8 text-center">
-                                
-                            <h3 class="text-center ml-5 mr-5">Bienvenido de nuevo al despacho,  en esta zona puedes encontrará actualizada toda la información sobre los procedimientos en curso.</h3>
-                            <h3 class="text-primary text-center">Elije tu consulta</h3>
-                        </div>
+                            <div class="col-8 text-center  mb-2">
+                                <h2 class="text-center ml-5 mr-5 mb-4">Bienvenido de nuevo al despacho,  en esta zona puedes encontrará actualizada toda la información sobre los procedimientos en curso.</h2>
+                             </div>
+                             <div class="mt-3 mb-4">
+                                <h2 class="colorletrasazul text-center ">Elije tu consulta</h2>
+                            </div>
+                         
                                 <div class="col-lg-4  col-md-6  col-sm-12  mt-1 mb-1 ">
                                     <div class="card bordecard">
                                         @*<a href="">*@
@@ -134,13 +136,13 @@
                                         @*</a>*@
                                     </div>
                                 </div>
-                            }
-                        }
+                                }
+                                }
 
-                        else
-                        { }
-                </div>
-            </div>
+                                else
+                                { }
+                            </div>
+                        </div>
         </div>
     </div>
     @if (Request.IsAuthenticated)
@@ -148,19 +150,19 @@
         <div class="row pl-5 pr-5 pt-4 pb-4 ">
             <div class="col-lg-10 col-lg-offset-1 ">
 
-                <div class="col-12 text-center">
-                    <h3 class="text-center text-primary mb-5 ">Tu calendario y mensajes.</h3>
+                <div class="col-12 text-center mt-3 mb-4">
+                    <h2 class="text-center colorletrasazul mb-5 ">Tu calendario y mensajes.</h2>
                 </div>
-                <div class="col-lg-10  col-lg-offset-1 ml-4 mr-4 col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2 bg-grisclaro">
+                <div class="col-lg-8  col-lg-offset-2 ml-4 mr-4 col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2 bg-grisclaro">
                     <div class="row  pt-2 pb-2 pl-4 pr-4">
-                        <div class="col-lg-6 mt-2">
-                            <img src="~/Content/Imagenes/Actuación1280845.jpg" class="img-responsive mb-2" alt="...">
-                            <button type="button" class="btn btn-primary btn-lg btn-block text-center">VER CALENDARIO</button>
+                        <div class="col-lg-4 col-lg-offset-1 mt-2">
+                            <img src="~/Content/Imagenes/Calendario1.PNG" class="img-fluid mb-2 pb-4" alt="...">                           
+                            <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">VER CALENDARIO</button>
 
                         </div>
-                        <div class="col-lg-6 mt-2">
-                            <img src="~/Content/Imagenes/Actuación1280845.jpg" class="img-responsive mb-2" alt="...">
-                            <button type="button" class="btn btn-primary btn-lg btn-block text-center">VER MENSAJES</button>
+                        <div class="col-lg-4 col-lg-offset-2 mt-2">
+                            <img src="~/Content/Imagenes/Mensajes1.PNG" class="img-fluid mb-2 pb-4" alt="...">                           
+                            <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">VER MENSAJES</button>
 
 
                         </div>
@@ -168,9 +170,9 @@
                     </div>
                 </div>
                 <div class="col-lg-12 text-center pt-5 pb-1">
-                    <h3 class=" text-center ">
+                    <h2 class=" text-center ">
                         Esperamos que estas herramientas te sean de utilidad, si tienes cualquier duda no dudes en ponerte en contacto, estaremos encantados de atenderte.
-                    </h3>
+                    </h2>
                 </div>
                 <div class="row ">
                     <div class="col-lg-6 col-md-6 col-xs-12 mt-4 mb-2">
@@ -178,16 +180,16 @@
                         {
                             if (User.IsInRole("Usuario"))
                             {
-                                <button type="button" class="btn btn-primary btn-lg btn-block text-center">SOPORTE DESPACHO</button>
+                                <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">SOPORTE DESPACHO</button>
                             }
                             if (User.IsInRole("Administrador"))
                             {
-                                <button type="button" class="btn btn-primary btn-lg btn-block text-center">SOPORTE TÉCNICO</button>
+                                <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">SOPORTE TÉCNICO</button>
                             }
                         }
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12 mt-4 mb-4">
-                        <button type="button" class="btn btn-primary btn-lg btn-block text-center">TUTORIÁL DE USO</button>
+                        <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">TUTORIÁL DE USO</button>
                     </div>
                 </div>
             </div>

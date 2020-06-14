@@ -222,11 +222,13 @@
     <Content Include="Content\Imagenes\Agendas1280201.jpg" />
     <Content Include="Content\Imagenes\Agendas1280285.jpg" />
     <Content Include="Content\Imagenes\Agendas1280400.jpg" />
+    <Content Include="Content\Imagenes\Calendario1.png" />
     <Content Include="Content\Imagenes\Cliente1280845.jpg" />
     <Content Include="Content\Imagenes\Documento1280845.jpg" />
     <Content Include="Content\Imagenes\Expediente1280x8452.jpg" />
     <Content Include="Content\Imagenes\jurisdiccion1280x845.jpg" />
     <Content Include="Content\Imagenes\library-898333_1920.jpg" />
+    <Content Include="Content\Imagenes\Mensajes1.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />

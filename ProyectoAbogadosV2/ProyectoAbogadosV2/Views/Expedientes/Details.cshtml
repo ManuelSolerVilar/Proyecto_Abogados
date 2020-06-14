@@ -8,7 +8,7 @@
             <div class="col-12   mt-2   pt-2 pl-3 pb-1 bg-grisclaro">
                 <h2>@Html.ActionLink("Expediente", "Index", "Expedientes") / Detalle</h2>
             </div>
-        
+
             <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro ">
                 <p class="color-grisoscuro-letras">DESCRIPCIÓN:</p>
                 <dl class="dl-horizontal">
@@ -33,10 +33,8 @@
                     <dd class="color-grisoscuro-letras2">
                         @Html.DisplayFor(model => model.Jurisdiccion.Nombre)
                     </dd>
-                    <br />
-
-
                 </dl>
+                <br />
             </div>
             <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
                 <p class="color-grisoscuro-letras">PARTICIPANTES:</p>
@@ -56,9 +54,9 @@
                     <dd class="color-grisoscuro-letras2">
                         @Html.DisplayFor(model => model.Cliente.Nombre)
                     </dd>
-                    <br />
-                    <br />
                 </dl>
+                <br />
+                <br />
             </div>
             <div class="col-lg-4  col-md-6   col-sm-12 pt-2  bg-grisclaro">
                 <p class="color-grisoscuro-letras">ECONOMÍA:</p>
@@ -98,10 +96,7 @@
         </div>
         @* Se añade código para presentar los expedientes del cliente seleccionado *@
         <div class="col-10 ml-6 mr-6 mt-4 mb-2">
-            <div class="col-12 ml-4 mr-4">
-                <p>@Html.ActionLink("Nuevo Documento", "SubirArchivo", "Documentos", new { idExpediente = Model.Id }, null) </p>
-                <p>@Html.ActionLink("Nueva Actuacion", "Create", "Actuaciones", new { idExpediente = Model.Id }, null) </p>
-            </div>
+            
             <h4><strong> Actuaciones </strong> asignadas al expediente:</h4>
             <br />
             <table class="table table-hover table-responsive ml-2 mr-2">
@@ -152,59 +147,23 @@
                     </tr>
                 }
             </table>
-            @*   <h4><strong> Documentos </strong> asignadas al expediente:</h4>
-            <br />
-            <table class="table table-hover table-responsive ml-2 mr-2">
-                <tr class=" bg-grisclaro color-grisoscuro-letras">
-
-                    <td>Expediente</td>
-                    <td>Descripcion</td>
-                    <td>Documentación</td>
-                    <td></td>
-                </tr>
-                @foreach (var item in Model.Documentos)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ExpedienteId)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Descripcion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Documentacion)
-                        </td>
-                       <td>
-                            <div class="hidden-print">
-
-                                @if (User.IsInRole("Administrador"))
-                                {
-                                    <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
-                                    <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null)</button>
-                                    <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)</button>
-
-                                }
-                                @if (User.IsInRole("Usuario"))
-                                {
-                                    <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
-                                }
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </table>
-
-            @* Se añade para poder imprimir la página *@
-            <div class="hidden-print text-center">
-                <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
-            </div>
-            <div class="hidden-print text-left">
-                @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-                <button type="button" class="btn btn-primary btn-lg btn-block">@Html.ActionLink("Volver a Expedientes", "Index")</button>
-
-
+            <div class="col-12 ml-4 mr-4">
+                <p class="">@Html.ActionLink("NUEVA ACTUACIÓN", "Create", "Actuaciones", new { idExpediente = Model.Id }, null) </p>
             </div>
 
+                </div>
+                <div class="col-11 ml-4 mr-4  mt-2   pt-2 pl-3 pb-1 ">
+                    <div class="hidden-print text-left mt-5">
+                        @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+
+                        @Html.ActionLink("VOLVER A EXPEDIENTES", "Index", new { @class = "bg-primary" })
+
+                    </div>
+
+
+                    @* Se añade para poder imprimir la página *@
+                    <div class="hidden-print text-center">
+                        <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+                    </div>
+                </div>
         </div>
-    </div>
-</div>

@@ -60,14 +60,56 @@
 
     </dl>
 </div>
-<p>
-    @if (User.IsInRole("Administrador"))
-    {
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <span>|</span>
-        @Html.ActionLink("Volver a Actuaciones", "Index")
-    }
-    @if (User.IsInRole("Usuario"))
-    {
-        @Html.ActionLink("Volver a Actuaciones", "Index")
-    }
-</p>
+<p>@Html.ActionLink("Nuevo Documento", "SubirArchivo", "Documentos", new { idActuacion = Model.Id }, null) </p>
+  <h4><strong> Documentos </strong> asignados a la actuación:</h4>
+                <br />
+                <table class="table table-hover table-responsive ml-2 mr-2">
+                    <tr class=" bg-grisclaro color-grisoscuro-letras">
+
+                        <td>Expediente</td>
+                        <td>Descripcion</td>
+                        <td>Documentación</td>
+                        <td></td>
+                    </tr>
+                    @foreach (var item in Model.Documentos)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExpedienteId)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Descripcion)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Documentacion)
+                            </td>
+                           <td>
+                                <div class="hidden-print">
+
+                                    @if (User.IsInRole("Administrador"))
+                                    {
+                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null)</button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)</button>
+
+                                    }
+                                    @if (User.IsInRole("Usuario"))
+                                    {
+                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+    <p>
+        @if (User.IsInRole("Administrador"))
+        {
+            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <span>|</span>
+            @Html.ActionLink("Volver a Actuaciones", "Index")
+        }
+        @if (User.IsInRole("Usuario"))
+        {
+            @Html.ActionLink("Volver a Actuaciones", "Index")
+        }
+    </p>
