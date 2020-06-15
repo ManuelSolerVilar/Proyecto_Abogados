@@ -238,18 +238,15 @@ namespace ProyectoAbogadosV2.Controllers
 
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            foreach (Actuacion actu in db.Actuacions.Where(a => a.ExpedienteId == id))//Borrar todos los documentos relacionados con una actuacion
             {
-                Expediente expediente = db.Expedientes.Find(id);
-                db.Expedientes.Remove(expediente);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                ActuacionesController ac = new ActuacionesController();
+                ac.DeleteCascade(actu.Id);
             }
-            else//Ya que no estas autenticado, te redirijo a la pagina de login
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
+            Expediente expediente = db.Expedientes.Find(id);
+            db.Expedientes.Remove(expediente);
+            db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)

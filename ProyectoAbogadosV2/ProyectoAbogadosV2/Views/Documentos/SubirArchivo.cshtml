@@ -11,9 +11,10 @@
 <form method="post" enctype="multipart/form-data">
     @*Html.DropDownList("a",(IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string);*@
     <input type="file" name="file" />
-    <input type="text" name="description" />
+    <input type="text" name="description" /> <p>Los ficheros no pueden superar los 20MB de tamaño.</p>
     <button type="submit">Subir</button>
 </form>
 <p>
+    
     @Html.ActionLink("Back to List", "Index")
 </p>

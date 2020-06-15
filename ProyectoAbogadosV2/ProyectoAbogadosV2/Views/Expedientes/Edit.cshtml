@@ -31,7 +31,8 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = " color-azuloscuro control-label col-lg-3 col-md-4" })
                             <div class="col-lg-9 col-md-8 ">
-                                @Html.EditorFor(model => model.FechaInicio, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.EditorFor(model => model.FechaInicio, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.JQueryUI().DatepickerFor(model => model.FechaInicio).ShowButtonPanel(true).ChangeYear(true).ChangeMonth(true)
                                 @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -39,7 +40,8 @@
                         <div class="form-group">
                             @Html.LabelFor(model => model.FechaCierre, htmlAttributes: new { @class = " color-azuloscuro control-label col-lg-3 col-md-4" })
                             <div class="col-lg-9 col-md-8 ">
-                                @Html.EditorFor(model => model.FechaCierre, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.EditorFor(model => model.FechaCierre, new { htmlAttributes = new { @class = "form-control" } })*@
+                                @Html.JQueryUI().DatepickerFor(model => model.FechaCierre).ShowButtonPanel(true).ChangeYear(true).ChangeMonth(true)
                                 @Html.ValidationMessageFor(model => model.FechaCierre, "", new { @class = "text-danger" })
                             </div>
                         </div>

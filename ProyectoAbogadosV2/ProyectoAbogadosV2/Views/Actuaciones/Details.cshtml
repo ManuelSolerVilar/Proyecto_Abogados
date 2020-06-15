@@ -3,65 +3,62 @@
 @{
     ViewBag.Title = "Details";
 }
+    <div class="container-fluid">
+        <div class="row pl-3 pr-3 ">
+            <div class="col-12   mt-2   pt-2 pl-3 pb-1 bg-grisclaro">
+                <h2>@Html.ActionLink("Actuación", "Index", "Actuaciones") / Detalle</h2>
+            </div>
+            <div class="col-lg-6  col-md-6   col-sm-12 pt-2  bg-grisclaro ">
+                <p class="color-grisoscuro-letras">DESCRIPCIÓN:</p>
+                <dl class="dl-horizontal">
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.Expediente.TituloExpediente)
+                    </dt>
+                    <dd class="color-azuloscuro bold">
+                        @Html.DisplayFor(model => model.Expediente.TituloExpediente)
+                    </dd>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.FechaInicio)
+                    </dt>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.FechaInicio)
+                    </dd>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.FechaCierre)
+                    </dt>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.FechaCierre)
+                    </dd>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.Descripcion)
+                    </dt>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.Descripcion)
+                    </dd>
+                </dl>
+            </div>
+            <div class="col-lg-6  col-md-6   col-sm-12 pt-2  bg-grisclaro ">
+                <p class="color-grisoscuro-letras">NOTIFICACIONES:</p>
+                <dl class="dl-horizontal">
 
-<h2>Details</h2>
-
-<div>
-    <h4>Actuacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Expediente.TituloExpediente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Expediente.TituloExpediente)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaInicio)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaInicio)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.FechaCierre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.FechaCierre)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NotificacionCliente)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NotificacionCliente)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.NotificacionJuzgado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.NotificacionJuzgado)
-        </dd>
-
-    </dl>
-</div>
-<p>@Html.ActionLink("Nuevo Documento", "SubirArchivo", "Documentos", new { idActuacion = Model.Id }, null) </p>
-  <h4><strong> Documentos </strong> asignados a la actuación:</h4>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.NotificacionCliente)
+                    </dt>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.NotificacionCliente)
+                    </dd>
+                    <dt class="color-grisoscuro-letras1">
+                        @Html.DisplayNameFor(model => model.NotificacionJuzgado)
+                    </dt>
+                    <dd class="color-grisoscuro-letras2">
+                        @Html.DisplayFor(model => model.NotificacionJuzgado)
+                    </dd>
+                </dl>
+                <br />
+            </div>
+            
+            <div class="col-10 ml-6 mr-6 mt-4 mb-2">
+                <h4><strong> Documentos </strong> asignados a la actuación:</h4>
                 <br />
                 <table class="table table-hover table-responsive ml-2 mr-2">
                     <tr class=" bg-grisclaro color-grisoscuro-letras">
@@ -83,33 +80,41 @@
                             <td>
                                 @Html.DisplayFor(modelItem => item.Documentacion)
                             </td>
-                           <td>
+                            <td>
                                 <div class="hidden-print">
 
                                     @if (User.IsInRole("Administrador"))
                                     {
-                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
-                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Actuaciones", new { id = item.Id }, null)</button>
-                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Actuaciones", new { id = item.Id }, null)</button>
+                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Documentos", new { id = item.Id }, null)</button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Documentos", new { id = item.Id }, null)</button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Documentos", new { id = item.Id }, null)</button>
 
                                     }
                                     @if (User.IsInRole("Usuario"))
                                     {
-                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Actuaciones", new { id = item.Id }, null)</button>
+                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Documentos", new { id = item.Id }, null)</button>
                                     }
                                 </div>
                             </td>
                         </tr>
                     }
                 </table>
-    <p>
-        @if (User.IsInRole("Administrador"))
-        {
-            @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <span>|</span>
-            @Html.ActionLink("Volver a Actuaciones", "Index")
-        }
-        @if (User.IsInRole("Usuario"))
-        {
-            @Html.ActionLink("Volver a Actuaciones", "Index")
-        }
-    </p>
+
+                <div class="col-12 ml-4 mr-4">
+                    <p class="">@Html.ActionLink("NUEVO DOCUMENTO", "SubirArchivo", "Documentos", new { idActuacion = Model.Id }, null)
+                    </p>
+                </div>
+            </div>
+            <p>
+                @if (User.IsInRole("Administrador"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) <span>|</span>
+                    @Html.ActionLink("Volver a Actuaciones", "Index")
+                }
+                @if (User.IsInRole("Usuario"))
+                {
+                    @Html.ActionLink("Volver a Actuaciones", "Index")
+                }
+            </p>
+
+        </div></div>

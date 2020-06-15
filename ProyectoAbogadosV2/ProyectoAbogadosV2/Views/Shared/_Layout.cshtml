@@ -1,19 +1,21 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/Content/Estilos.css" rel="stylesheet" />
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @* Añadido para Datapicker de JQueryUIHelpers.Mvc5 *@
+    @Styles.Render("~/Content/themes/base/css")
 
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top ml-2 mr-2 bg-white">
         <div class="container-fluid bg-white ">
-            
+
             <div class="navbar-header ">
 
                 <button type="button" class="navbar-toggle colortortuga " data-toggle="collapse" data-target=".navbar-collapse">
@@ -53,10 +55,10 @@
                     else
                     {
                         @*<li>@Html.ActionLink("Abogados", "Index", "Abogados")</li>
-                    <li>@Html.ActionLink("Expedientes", "Index", "Expedientes")</li>
-                    <li>@Html.ActionLink("Documentos", "SubirArchivo", "Documentos")</li>
-                    <li>@Html.ActionLink("Actuaciones", "Index", "Actuaciones")</li>
-                    <li>@Html.ActionLink("Jurisdicciones", "Index", "Jurisdicciones")</li>*@
+                            <li>@Html.ActionLink("Expedientes", "Index", "Expedientes")</li>
+                            <li>@Html.ActionLink("Documentos", "SubirArchivo", "Documentos")</li>
+                            <li>@Html.ActionLink("Actuaciones", "Index", "Actuaciones")</li>
+                            <li>@Html.ActionLink("Jurisdicciones", "Index", "Jurisdicciones")</li>*@
                     }
 
                 </ul>
@@ -66,7 +68,7 @@
     </div>
     <div class="container-fluid body-content">
         @RenderBody()
-        
+
         <footer class=" ml-2 mr-2 mt-2">
             <div class="container-fluid">
                 <div class="row bg-azuloscuro-footer">
@@ -95,16 +97,16 @@
                         <p class="color-enlacesgrisvioleta">Formulario de Contacto</p>
                     </div>
                 </div>
-                <div class="row bg-light color-enlacesgrisvioleta ">                    
-                        <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
-                            <p class="color-enlacesgrisvioleta">Política de Privacidad</p>
-                        </div>
-                        <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
-                            <p class="color-enlacesgrisvioleta">Términos de uso</p>
-                        </div>
-                        <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
-                            <p>&copy; Diseño Legal S.L. @DateTime.Now.Year</p>
-                        </div>
+                <div class="row bg-light color-enlacesgrisvioleta ">
+                    <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
+                        <p class="color-enlacesgrisvioleta">Política de Privacidad</p>
+                    </div>
+                    <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
+                        <p class="color-enlacesgrisvioleta">Términos de uso</p>
+                    </div>
+                    <div class=" col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-1 pl-4 pr-4  pt-2 ">
+                        <p>&copy; Diseño Legal S.L. @DateTime.Now.Year</p>
+                    </div>
                 </div>
             </div>
         </footer>
@@ -112,6 +114,10 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @* Añadido para Datapicker de JQueryUIHelpers.Mvc5 *@
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryui")
     @RenderSection("scripts", required: false)
+
 </body>
 </html>

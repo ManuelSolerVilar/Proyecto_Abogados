@@ -165,23 +165,16 @@ namespace ProyectoAbogadosV2.Controllers
         // GET: Actuaciones/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
+            if (id == null)
             {
-                if (id == null)
-                {
-                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-                }
-                Actuacion actuacion = db.Actuacions.Find(id);
-                if (actuacion == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(actuacion);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            else//Ya que no estas autenticado, te redirijo a la pagina de login
+            Actuacion actuacion = db.Actuacions.Find(id);
+            if (actuacion == null)
             {
-                return RedirectToAction("Login", "Account");
+                return HttpNotFound();
             }
+            return View(actuacion);
         }
 
         // POST: Actuaciones/Delete/5
@@ -189,19 +182,21 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
-            {
-                Actuacion actuacion = db.Actuacions.Find(id);
-                db.Actuacions.Remove(actuacion);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else//Ya que no estas autenticado, te redirijo a la pagina de login
-            {
-                return RedirectToAction("Login", "Account");
-            }
-
+            DeleteCascade(id);
+            return RedirectToAction("Index");
         }
+        public void DeleteCascade(int id)
+        {
+            foreach (Documento doc in db.Documentoes.Where(d => d.Actuacion.Id == id))//Borrar todos los documentos relacionados con una actuacion
+            {
+                DocumentosController dc = new DocumentosController();
+                dc.DeleteCascade(doc.Id);
+            }
+            Actuacion actuacion = db.Actuacions.Find(id);
+            db.Actuacions.Remove(actuacion);
+            db.SaveChangesAsync();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)

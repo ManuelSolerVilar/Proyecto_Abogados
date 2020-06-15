@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -25,7 +26,6 @@ namespace ProyectoAbogadosV2.Controllers
                                      select d.TituloExpediente;
                 expedientes.AddRange(qryExpedientes.Distinct());
                 ViewBag.ListaTipoAverias = new SelectList(expedientes);
-
                 return View(db.Documentoes.ToList());
             }
             else//Ya que no estas autenticado, te redirijo a la pagina de login
@@ -167,17 +167,16 @@ namespace ProyectoAbogadosV2.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
-            {
-                Documento documento = db.Documentoes.Find(id);
-                db.Documentoes.Remove(documento);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            else//Ya que no estas autenticado, te redirijo a la pagina de login
-            {
-                return RedirectToAction("Login", "Account");
-            }
+            DeleteCascade(id);
+            return RedirectToAction("Index");
+        }
+
+        public void DeleteCascade(int id)
+        {
+            Documento documento = db.Documentoes.Find(id);
+            System.IO.File.Delete(documento.Documentacion);//Elimina el fichero del directorio actual.
+            db.Documentoes.Remove(documento);
+            db.SaveChanges();
         }
 
         protected override void Dispose(bool disposing)
@@ -211,6 +210,7 @@ namespace ProyectoAbogadosV2.Controllers
             {
                 SubirArchivosModelo modelo = new SubirArchivosModelo();
                 //Si se ha seleccionado un fichero para subir entra si no salta
+              
                 if (file != null)
                 {
                     //Me creo una variable string y le digo a la ruta que quiero meter el fichero.
@@ -236,13 +236,13 @@ namespace ProyectoAbogadosV2.Controllers
                     //Creo un documento "doc"
                     Documento doc = new Documento();
                     doc.Documentacion = ruta;//la ruta del documento
-                                             //doc.Actuacion = db.Actuacions.Find(1);//La actuacion con la que se relaciona el documento //TODO
-                    doc.ExpedienteId = int.Parse(Request.QueryString["idExpediente"]);//El id del expediente al que pertenece la actuacion
+                    int id = int.Parse(Request.QueryString["idActuacion"]);
+                    doc.Actuacion = db.Actuacions.Where(a => a.Id == id).FirstOrDefault();//La actuacion con la que se relaciona el documento //TODO
+                    doc.ExpedienteId = doc.Actuacion.ExpedienteId;//El id del expediente al que pertenece la actuacion
                     doc.Descripcion = Request.Form["description"];//La descripcion del documento especificada en el formulario
                     db.Documentoes.Add(doc);//Añadimos el documento a la tabla
                     db.SaveChanges();//Esto guarda los cambios en la BBDD
                     return Redirect("./");
-
                 }
                 return View();
             }

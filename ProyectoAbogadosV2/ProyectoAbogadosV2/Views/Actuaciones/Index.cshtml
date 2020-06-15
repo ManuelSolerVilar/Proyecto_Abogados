@@ -67,13 +67,14 @@
                                     @if (User.IsInRole("Administrador"))
                                     {
 
-                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("VER EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null) </button>
+                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("DETALLE", "Details", new { id = item.Id }, null) </button>
+                                        @*@Html.ActionLink("DETALLE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)*@
                                         <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id }) </button>
                                         <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id }) </button>
                                     }
                                     @if (User.IsInRole("Usuario"))
                                     {
-                                        <button type="button" class="btn  btn-xs">@Html.ActionLink("VER EXPEDIENTE", "Details", "Expedientes", new { id = item.ExpedienteId }, null)</button>
+                                <button type="button" class="btn  btn-xs">@Html.ActionLink("DETALLE", "Details", new { id = item.Id }, null)</button>
                                     }
                                 </td>
                             </tr>
