@@ -48,6 +48,7 @@
                                     <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
                                     <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
                                     <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
+                                    <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("DESCARGAR", "DescargarArchivo", new { id = item.Id })</button>
                                 }
                                 @if (User.IsInRole("Usuario"))
                                 {

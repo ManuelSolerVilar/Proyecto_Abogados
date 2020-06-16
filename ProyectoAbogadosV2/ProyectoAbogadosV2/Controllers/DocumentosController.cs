@@ -251,5 +251,17 @@ namespace ProyectoAbogadosV2.Controllers
                 return RedirectToAction("Login", "Account");
             }
         }
+        public FileResult DescargarArchivo(int id) 
+        {
+            string ruta = db.Documentoes.Where(d => d.Id == id).FirstOrDefault().Documentacion; //Saco la ruta donde esta la ruta guardado el archivo
+            System.IO.FileStream fs= System.IO.File.OpenRead(ruta);
+            byte[] data = new byte[fs.Length];
+            int br = fs.Read(data, 0, data.Length);
+            if (br != fs.Length)
+                throw new System.IO.IOException(ruta);
+            //Con el código anterior se pasa el archivo en forma de octeto con el fin de poder incluir cualquier extensión de archivo.
+            string name = System.IO.Path.GetFileName(ruta);//Con este código se estrae el nombre del archivo en concreto.
+            return File(data, System.Net.Mime.MediaTypeNames.Application.Octet, name);//Devuelvo un archivo a partir de los datos en formato binario o de octetos con el nombre del archivo especificado.
+        }
     }
 }

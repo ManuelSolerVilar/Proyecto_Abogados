@@ -2,19 +2,29 @@
 @{
     ViewBag.Title = "SubirArchivo";
 }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 ml-2 mr-2 mt-1 mb-1 pt-1 pl-2 pb-1 bg-grisclaro">
+                <h2>@Html.ActionLink("Documento", "Index", "Documentos") / Subir Archivo</h2>
+            </div>
+            <div class="col-12 ml-4 mr-4 mt-2 mb-2 pt-1 pl-2 pb-1 bg-grisclaro">
 
-<h2>SubirArchivo</h2>
+                <h2 class="text-danger">@ViewBag.Error</h2>
+                <h2 class="text-success">@ViewBag.Correcto</h2>
 
-<h2 class="text-danger">@ViewBag.Error</h2>
-<h2 class="text-success">@ViewBag.Correcto</h2>
+                <form method="post" enctype="multipart/form-data">
+                    @*Html.DropDownList("a",(IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string);*@
+                    <input type="file" name="file" />
+                    <input type="text" name="description" /><label>Introduzca en nombre del documento.</label>
+                    <p class="text-primary">Los ficheros no pueden superar los 20MB de tamaño.</p>
+                    <button type="submit">Subir</button>
 
-<form method="post" enctype="multipart/form-data">
-    @*Html.DropDownList("a",(IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string);*@
-    <input type="file" name="file" />
-    <input type="text" name="description" /> <p>Los ficheros no pueden superar los 20MB de tamaño.</p>
-    <button type="submit">Subir</button>
-</form>
-<p>
-    
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                </form>
+
+                <p>
+
+                    @Html.ActionLink("VOLVER A DOCUMENTOS", "Index")
+                </p>
+            </div>
+            </div>
+    </div>
