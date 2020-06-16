@@ -58,7 +58,17 @@ namespace ProyectoAbogadosV2.Controllers
                 lstTipoJurisdiccion.AddRange(qryTipoJurisdiccion.Distinct());
                 ViewBag.ListaTipoAverias = new SelectList(lstTipoJurisdiccion);
 
-                if (!(User.Identity.Name == "admin@empresa.com"))//CAMBIAR
+                
+
+                if (User.IsInRole("Administrador"))//Si soy un abogado (el administrador es un abogado)
+                {
+                    if (!(User.Identity.Name == "admin@empresa.com"))//Si no soy el administrador tiene el correo "admin@empresa"
+                    {
+                        Abogado abogado = db.Abogadoes.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
+                        expedientes = expedientes.Where(s => s.AbogadoId == abogado.Id);
+                    }
+                }
+                else//Si soy un cliente
                 {
                     Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
                     expedientes = expedientes.Where(s => s.ClienteId == cliente.Id);

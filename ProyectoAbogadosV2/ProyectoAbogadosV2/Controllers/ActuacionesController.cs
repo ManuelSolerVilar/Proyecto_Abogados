@@ -31,6 +31,26 @@ namespace ProyectoAbogadosV2.Controllers
             if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
                 var actuacions = db.Actuacions.Include(a => a.Expediente);
+
+                //Para filtrar las actuaciones por aquellas que pertenecen a un expediente
+                var expedientes = db.Expedientes.Include(e => e.Abogado).Include(e => e.Cliente).Include(e => e.Jurisdiccion);
+
+                if (User.IsInRole("Administrador"))//Si soy un abogado (el administrador es un abogado)
+                {
+                    if (!(User.Identity.Name == "admin@empresa.com"))//Si no soy el administrador
+                    {
+                        Abogado abogado = db.Abogadoes.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
+                        expedientes = expedientes.Where(s => s.AbogadoId == abogado.Id);
+                    }
+                }
+                else//Si soy un cliente
+                {
+                    Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                    expedientes = expedientes.Where(s => s.ClienteId == cliente.Id);
+                }
+
+                actuacions = actuacions.Where(a => expedientes.Any(e=>e.Id==a.ExpedienteId));
+
                 return View(actuacions.ToList());
             }
             else//Ya que no estas autenticado, te redirijo a la pagina de login

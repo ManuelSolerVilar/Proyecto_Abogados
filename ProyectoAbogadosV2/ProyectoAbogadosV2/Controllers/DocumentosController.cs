@@ -20,13 +20,32 @@ namespace ProyectoAbogadosV2.Controllers
         {
             if (Request.IsAuthenticated)//Si no estas autenticado no puedes hacer nada
             {
-                var expedientes = new List<string>();
+                /*var expedientes = new List<string>();
                 var qryExpedientes = from d in db.Expedientes
                                      orderby d.Id
                                      select d.TituloExpediente;
                 expedientes.AddRange(qryExpedientes.Distinct());
-                ViewBag.ListaTipoAverias = new SelectList(expedientes);
-                return View(db.Documentoes.ToList());
+                ViewBag.ListaTipoAverias = new SelectList(expedientes);*/
+
+                var expedientes = db.Expedientes.Include(e => e.Abogado).Include(e => e.Cliente).Include(e => e.Jurisdiccion);
+
+                if (User.IsInRole("Administrador"))//Si soy un abogado (el administrador es un abogado)
+                {
+                    if (!(User.Identity.Name == "admin@empresa.com"))//Si no soy el administrador
+                    {
+                        Abogado abogado = db.Abogadoes.Where(a => a.Email == User.Identity.Name).FirstOrDefault();
+                        expedientes = expedientes.Where(s => s.AbogadoId == abogado.Id);
+                    }
+                }
+                else//Si soy un cliente
+                {
+                    Cliente cliente = db.Clientes.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+                    expedientes = expedientes.Where(s => s.ClienteId == cliente.Id);
+                }
+
+                var documents = db.Documentoes.Include(d=>d.Actuacion);
+                documents = documents.Where(d => expedientes.Any(e => e.Id == d.ExpedienteId));
+                return View(documents.ToList());
             }
             else//Ya que no estas autenticado, te redirijo a la pagina de login
             {
