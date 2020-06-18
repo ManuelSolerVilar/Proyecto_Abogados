@@ -7,104 +7,107 @@
         <div class="row">
 
             <div class="col-12 bg-azulmarino-degradado ml-2 mr-2 mt-1 mb-1 pl-1 pt-1 pb-1">
-                <h2 class="text-white">Listado de Clientes</h2>
-                
-                
-            </div>
-            
-            </div>
+                <h2 class="text-white">Listado de Clientes</h2>           
+            </div>            
+        </div>
+        <div class="col-12 ml-2 mr-2">
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous"> @Html.ActionLink("NUEVO CLIENTE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
-            <div class="col-12 ml-2 mr-2">
-                <h5 class="pl-2 pb-1 pt-1">
-                    @Html.ActionLink("NUEVO CLIENTE", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })
-                </h5>
-                @*
-            <p>
-                @Html.ActionLink("Nuevo Cliente", "Create")
-            </p>
-                *@
-            </div>
+                </ul>
+            </nav>
+        </div>
             <div class="col-lg-10 col-lg-offset-1">
-                <table class="table table-hover table-responsive table-condensed">
-                    <tr class=" bg-grisclaro color-grisoscuro-letras">
-                        <th class="">
-                            @Html.DisplayNameFor(model => model.Nombre)
-                        </th>
 
-                        <th>
-                            @Html.DisplayNameFor(model => model.Apellidos)
-                        </th>
+                
 
-                        <th class="visible-lg">
-                            @Html.DisplayNameFor(model => model.NifCliente)
-                        </th>
 
-                        <th>
-                            @Html.DisplayNameFor(model => model.MovilCliente)
-                        </th>
-                        @*
+
+                        <table class="table table-hover table-responsive table-condensed">
+                            <tr class=" bg-grisclaro color-grisoscuro-letras">
+
+                                <th>
+                                    <p> @Html.DisplayNameFor(model => model.Nombre)</p>
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Apellidos)
+                                </th>
+
+                                <th class="visible-lg">
+                                    @Html.DisplayNameFor(model => model.NifCliente)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.MovilCliente)
+                                </th>
+                                @*
                     <th class="visible-lg visible-md">
                         @Html.DisplayNameFor(model => model.FijoCliente)
                     </th>*@
 
-                        <th class="hidden-xs">
-                            @Html.DisplayNameFor(model => model.Email)
-                        </th>
+                                <th class="hidden-xs">
+                                    @Html.DisplayNameFor(model => model.Email)
+                                </th>
 
-                        <th class="visible-lg">
-                            @Html.DisplayNameFor(model => model.Direccion_Cliente)
-                        </th>
-                        <th class="visible-lg">
-                            @Html.DisplayNameFor(model => model.Poblacion_Cliente)
-                        </th>
+                                <th class="visible-lg">
+                                    @Html.DisplayNameFor(model => model.Direccion_Cliente)
+                                </th>
+                                <th class="visible-lg">
+                                    @Html.DisplayNameFor(model => model.Poblacion_Cliente)
+                                </th>
 
-                        <th></th>
-                    </tr>
+                                <th></th>
+                            </tr>
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Nombre)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Apellidos)
-                            </td>
-                            <td class="visible-lg">
-                                @Html.DisplayFor(modelItem => item.NifCliente)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.MovilCliente)
-                            </td>
-                            @*
+                            @foreach (var item in Model)
+                            {
+                                <tr class="class=" align-middle">
+
+
+                                    <td>
+
+                                        @Html.DisplayFor(modelItem => item.Nombre)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Apellidos)
+                                    </td>
+                                    <td class="visible-lg">
+                                        @Html.DisplayFor(modelItem => item.NifCliente)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.MovilCliente)
+                                    </td>
+                                    @*
                         <td class="visible-lg visible-md">
                             @Html.DisplayFor(modelItem => item.FijoCliente)
                         </td>*@
 
-                            <td class="hidden-xs">
-                                @Html.DisplayFor(modelItem => item.Email)
-                            </td>
+                                    <td class="hidden-xs">
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
 
-                            <td class="visible-lg">
-                                @Html.DisplayFor(modelItem => item.Direccion_Cliente)
-                            </td>
-                            <td class="visible-lg">
-                                @Html.DisplayFor(modelItem => item.Poblacion_Cliente)
-                            </td>
+                                    <td class="visible-lg">
+                                        @Html.DisplayFor(modelItem => item.Direccion_Cliente)
+                                    </td>
+                                    <td class="visible-lg">
+                                        @Html.DisplayFor(modelItem => item.Poblacion_Cliente)
+                                    </td>
 
-                            <td>
-                                <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
-                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
-                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
-                            </td>
-                        </tr>
-                    }
-
-                </table>
-                @* Se añade para poder imprimir la página *@
-                <div class="hidden-print text-center mt-5 mb-2">
-                    <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
-                </div>
-            </div>
-        </div>
+                                    <td>
+                                        <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
+                                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
+                                    </td>
+                                </tr>
+                            }
+                        </table>
+                   
+                        @* Se añade para poder imprimir la página *@
+                        <div class="hidden-print text-center mt-5 mb-2">
+                            <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
+                        </div>
+                    </div>
+                
         </div>

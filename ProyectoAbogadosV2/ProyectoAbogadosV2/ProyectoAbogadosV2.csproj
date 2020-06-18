@@ -227,6 +227,10 @@
     <Content Include="Content\Imagenes\Agendas1280400.jpg" />
     <Content Include="Content\Imagenes\Calendario1.png" />
     <Content Include="Content\Imagenes\Cliente1280845.jpg" />
+    <Content Include="Content\Imagenes\cliente160-208.jpg" />
+    <Content Include="Content\Imagenes\cliente20-26.jpg" />
+    <Content Include="Content\Imagenes\cliente40-52.jpg" />
+    <Content Include="Content\Imagenes\cliente80-104.jpg" />
     <Content Include="Content\Imagenes\Documento1280845.jpg" />
     <Content Include="Content\Imagenes\Expediente1280x8452.jpg" />
     <Content Include="Content\Imagenes\jurisdiccion1280x845.jpg" />

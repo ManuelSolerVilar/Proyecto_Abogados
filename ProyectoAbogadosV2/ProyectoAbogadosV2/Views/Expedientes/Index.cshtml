@@ -14,16 +14,38 @@
         </div>
 
         <div class="col-lg-12  ml-2 mr-2 ">
-            
-                @if (User.IsInRole("Administrador"))
-                {
-                    
-                        <h5 class="pl-1 ">@Html.ActionLink("NUEVO EXPEDIENTE", "Create")</h5>
-                   
-                }
-            
+
+            @if (User.IsInRole("Administrador"))
+            {
+
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous"> @Html.ActionLink("NUEVO EXPEDIENTE", "Create")</li>
+
+                </ul>
+            </nav>
+
+            }
+
         </div>
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="col-lg-10 col-lg-offset-1 ml-3 mr-3">
             @* Para buscar por nombre de empleado en la lista de valores *@
             @using (Html.BeginForm("Index", "Expedientes", FormMethod.Get))
@@ -35,14 +57,14 @@
                 </p>*/
                 if (User.IsInRole("Administrador"))
                 {
-                <div class="row mt-2 mb-2 pl-4 pr-4">
-                    <div class="col-lg-1 col-md-2 col-sm-5 mt-1 pt-1 pl-5">Jurisdicción:</div>
-                    <div class="col-lg-1 col-md-3 col-sm-5 mt-1 pt-1 mr-2">@Html.DropDownList("strTipoJurisdiccion", (IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string):</div>
-                    <div class="col-lg-1 col-md-2 col-sm-4 mt-1 pt-1 mr-1 pl-5">Nombre Cliente:</div>
-                    <div class="col-lg-1 col-md-3 col-sm-4 mt-1 pt-1 ">@Html.TextBox("strCadenaBusqueda", ViewBag.BusquedaActual as string)</div>
-                    <div class="col-lg-1 col-md-2 col-md-offset-4 col-sm-3 ml-4 pt-1  mt-1 tex-center"><input type="submit" value="Buscar y/o filtrar" /></div>
-                    <div class="col-lg-5 col-md-2 col-sm-0"></div>
-                </div>
+                    <div class="row mt-2 mb-2 pl-4 pr-4">
+                        <div class="col-lg-1 col-md-2 col-sm-5 mt-1 pt-1 pl-5">Jurisdicción:</div>
+                        <div class="col-lg-1 col-md-3 col-sm-5 mt-1 pt-1 mr-2">@Html.DropDownList("strTipoJurisdiccion", (IEnumerable<SelectListItem>)ViewBag.ListaTipoAverias, ViewBag.FiltroActual as string):</div>
+                        <div class="col-lg-1 col-md-2 col-sm-4 mt-1 pt-1 mr-1 pl-5">Nombre Cliente:</div>
+                        <div class="col-lg-1 col-md-3 col-sm-4 mt-1 pt-1 ">@Html.TextBox("strCadenaBusqueda", ViewBag.BusquedaActual as string)</div>
+                        <div class="col-lg-1 col-md-2 col-md-offset-4 col-sm-3 ml-4 pt-1  mt-1 tex-center"><input type="submit" value="Buscar y/o filtrar" /></div>
+                        <div class="col-lg-5 col-md-2 col-sm-0"></div>
+                    </div>
                 }
 
             }

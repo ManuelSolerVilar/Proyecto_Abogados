@@ -26,7 +26,7 @@
                                 <h4 class="text-primary text-center">Elija la sección que desea consultar.</h4>
                             </div>
                             <div class="col-lg-3  col-md-4  col-md-offset-1 col-sm-12  ml-2 mb-3 pl-4 pr-4  pt-2 ">
-                                <div class="card bordecard">
+                                <div class="card bordecard sombra">
                                     @*<a href="">*@
                                     <img src="~/Content/Imagenes/Expediente1280x8452.jpg" class="card-img-top" alt="...">
                                     <div class="card-body text-center">
@@ -76,8 +76,8 @@
                                 <h2 class="colorletrasazul text-center ">Elije tu consulta</h2>
                             </div>
                          
-                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1 mb-1 ">
-                                    <div class="card bordecard">
+                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1  ">
+                                    <div class="card bordecard img-thumbnail">
                                         @*<a href="">*@
                                         <img src="~/Content/Imagenes/Expediente1280x8452.jpg" class="card-img-top" alt="...">
                                         <div class="card-body text-center">
@@ -86,8 +86,8 @@
                                         @*</a>*@
                                     </div>
                                 </div>
-                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1 mb-1 ">
-                                    <div class="card bordecard">
+                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1  ">
+                                    <div class="card bordecard img-thumbnail">
                                         @*<a href="">*@
                                         <img src="~/Content/Imagenes/Actuación1280845.jpg" class="card-img-top" alt="...">
                                         <div class="card-body text-center">
@@ -96,8 +96,8 @@
                                         @*</a>*@
                                     </div>
                                 </div>
-                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1 mb-1 ">
-                                    <div class="card bordecard">
+                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1 ">
+                                    <div class="card bordecard img-thumbnail">
                                         @*<a href="">*@
                                         <img src="~/Content/Imagenes/Documento1280845.jpg" class="card-img-top" alt="..." />
                                         <div class="card-body text-center">
@@ -106,8 +106,8 @@
                                         @*</a>*@
                                     </div>
                                 </div>
-                                <div class="col-lg-4  col-md-6   col-sm-12   mt-1 mb-1 ">
-                                    <div class="card bordecard">
+                                <div class="col-lg-4  col-md-6   col-sm-12   mt-1  ">
+                                    <div class="card bordecard img-thumbnail">
                                         @*<a href="">*@
                                         <img src="~/Content/Imagenes/Cliente1280845.jpg" class="card-img-top" alt="...">
                                         <div class="card-body text-center">
@@ -116,8 +116,8 @@
                                         @*</a>*@
                                     </div>
                                 </div>
-                                <div class="col-lg-4  col-md-6   col-sm-12  mt-1 mb-1 ">
-                                    <div class="card bordecard">
+                                <div class="col-lg-4  col-md-6   col-sm-12  mt-1  ">
+                                    <div class="card bordecard img-thumbnail">
                                         @*<a href="">*@
                                         <img src="~/Content/Imagenes/Abogado1280845.jpg" class="card-img-top" alt="...">
                                         <div class="card-body text-center">
@@ -126,8 +126,8 @@
                                         @*</a>*@
                                     </div>
                                 </div>
-                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1 mb-1 ">
-                                    <div class="card bordecard">
+                                <div class="col-lg-4  col-md-6  col-sm-12  mt-1  ">
+                                    <div class="card bordecard img-thumbnail">
                                         @*<a href="">*@
                                         <img src="~/Content/Imagenes/jurisdiccion1280x845.jpg" class="card-img-top" alt="...">
                                         <div class="card-body text-center">
@@ -140,9 +140,26 @@
                                 }
 
                                 else
-                                { }
-                            </div>
-                        </div>
+                                {
+                                    <div class="row bg-azuloscuro-login pt-4 pb-4">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-2 mb-1">
+                                            <h2 class="ml-2 mr-2 text-center">BIENVENIDO A LA ZONA PRIVADA DE <span class="bold">SOLER Y SOLER ABOGADOS</span></h2>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-1 mb-2">
+                                            <h2 class="ml-2 mr-2 text-center">INICIE SESIÓN PARA ENTRAR</h2>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                            <nav aria-label="...">
+                                                <ul class="pager text-center">
+                                                    <li class=" text-center btn-lg ">@Html.ActionLink("INICIAR SESIÓN", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                    </div>
+                                }
+                </div>
+            </div>
         </div>
     </div>
     @if (Request.IsAuthenticated)
@@ -161,7 +178,13 @@
 
                         </div>
                         <div class="col-lg-4 col-lg-offset-2 mt-2">
-                            <img src="~/Content/Imagenes/Mensajes1.PNG" class="img-fluid mb-2 pb-4" alt="...">                           
+                            <div class="list-group">
+                                <p href="#" class="list-group-item active">MENSAJES</p>
+                                <a href="#" class="list-group-item"><span class="badge">+6</span>Email Recibidos</a>
+                                <a href="#" class="list-group-item"><span class="badge">+4</span>Email Enviados</a>
+                                <a href="#" class="list-group-item"><span class="badge">+2</span>Email Pendientes</a>                                
+                            </div>
+                            @*<img src="~/Content/Imagenes/Mensajes1.PNG" class="img-fluid mb-2 pb-4" alt="...">     *@
                             <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">VER MENSAJES</button>
 
 
@@ -180,16 +203,23 @@
                         {
                             if (User.IsInRole("Usuario"))
                             {
-                                <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">SOPORTE DESPACHO</button>
+                        <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">
+                            <a class="color-enlacesgrisvioleta" href="tel:+34610000000"><p>SOPORTE DESPACHO</p></a>                           
+                        </button>
                             }
                             if (User.IsInRole("Administrador"))
                             {
-                                <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">SOPORTE TÉCNICO</button>
+                    <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">
+                            <a class="color-enlacesgrisvioleta" href="tel:+34610000000"><p>SOPORTE TÉCNICO</p></a>
+                        
+                    </button>
                             }
                         }
                     </div>
                     <div class="col-lg-6 col-md-6 col-xs-12 mt-4 mb-4">
-                        <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">TUTORIÁL DE USO</button>
+                        <button type="button" class="btn bg-azul-oscuro btn-lg btn-block text-center">                        
+                            <a href="https://www.youtube.com/watch?v=LelB1Vn7E0c" class="color-enlacesgrisvioleta"><p>TUTORIÁL DE USO</p></a>
+                        </button>
                     </div>
                 </div>
             </div>

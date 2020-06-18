@@ -2,6 +2,13 @@
 {
 
 }
+.sombra {
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75) !important;
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75) !important;
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75) !important;
+}
+.cover {
+object-fit:cover;}
 .bold {
     font-weight: bold !important;
 }
@@ -57,11 +64,17 @@ a:hover {
 .bg-azuloscuro-footer {
     background-color: rgb(0,123,255) !important;
     background: linear-gradient(0deg, rgba(0,123,255,1) 0%, rgba(0,111,230,1) 20%, rgba(0,98,204,1) 100%) !important;
-
+    color: whitesmoke !important;
+}
+.bg-azuloscuro-login {
+    background: rgb(9,9,121)!important;
+    background: linear-gradient(90deg, rgba(9,9,121,1) 0%, rgba(9,9,121,1) 6%, rgba(0,212,255,1) 100%) !important;
+    /*background: rgb(2,0,36) !important;
+    background: linear-gradient(90deg, rgba(0,123,255,1) 0%, rgba(0,111,230,1) 35%, rgba(0,98,204,1) 100%) !important;*/
+    color: whitesmoke !important;
 }
 .colorletrasazul {
     color: rgb(0,123,255) !important;
-
 }
 .bg-azul-oscuro {
     background-color: rgb(0,123,255) !important;
@@ -252,9 +265,7 @@ a  .color-enlacesgrisvioleta {
 .pb-6 {
     padding-bottom: 6%;
 }
-.bordecard {
-    border: 1.5px solid #929292;    
-}
+
 
 
 
@@ -295,12 +306,7 @@ fs15 {
     clip-path: polygon(25% 0%, 100% 1%, 100% 100%, 25% 100%, 25% 49%);
     background-image: url('Imagenes/Abogado1280845.jpg');
 }*/
-.bordes {
-    border-bottom-color:#007BFF !important;
-    border:initial;
-    border-bottom:solid;
 
-}
 
 .centrado {
     position: absolute;

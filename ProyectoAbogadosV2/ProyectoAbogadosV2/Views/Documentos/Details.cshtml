@@ -16,39 +16,31 @@
                     <dt>
                         @Html.DisplayNameFor(model => model.Descripcion)
                     </dt>
-
                     <dd class="color-azuloscuro">
                         @Html.DisplayFor(model => model.Descripcion)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.ExpedienteId)
                     </dt>
-
                     <dd>
                         @Html.DisplayFor(model => model.ExpedienteId)
                     </dd>
-
-
-
                     <dt>
                         @Html.DisplayNameFor(model => model.Documentacion)
                     </dt>
-
                     <dd>
                         @Html.DisplayFor(model => model.Documentacion)
                     </dd>
-
                 </dl>
             </div>
-            <p>
-                 
-                
-            </p>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 mt-1">
-                <h5 class="pl-4 ">
-                    @Html.ActionLink("EDITAR", "Edit", new { id = Model.Id }) |
-                
-                    @Html.ActionLink("VOLVER A DOCUMENTOS", "Index")
-                </h5>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous"> @Html.ActionLink("EDITAR", "Edit", new { id = Model.Id })</li>
+                    </ul>
+                    <ul class="pager">
+                        <li class="previous"> @Html.ActionLink("VOLVER A DOCUMENTOS", "Index")</li>
+                    </ul>
+                </nav>
             </div>
         </div></div>

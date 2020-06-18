@@ -115,48 +115,51 @@
                     <td class="visible-lg">Fecha Cierre</td>
                     <td class="visible-lg">Descripción</td>
                     <td>Cliente</td>
-                    <td>Jurisdicción</td>
+                    <td class="visible-lg">Jurisdicción</td>
                     <td></td>
                 </tr>
                 @foreach (var item in Model.Expedientes)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TituloExpediente)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.FechaInicio)
-                        </td>
-                        <td class="visible-lg">
-                            @Html.DisplayFor(modelItem => item.FechaCierre)
-                        </td>
-                        <td class="visible-lg">
-                            @Html.DisplayFor(modelItem => item.Descripcion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Cliente.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Jurisdiccion.Nombre)
-                        </td>
-                        <td>
-                            <div class="hidden-print">
-                                <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Expedientes", new { id = item.Id }, null)</button>
-                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button>
-                                <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null)</button>
-                            </div>
-                        </td>
-                    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TituloExpediente)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td class="visible-lg">
+                    @Html.DisplayFor(modelItem => item.FechaCierre)
+                </td>
+                <td class="visible-lg">
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.Nombre)
+                </td>
+                <td class="visible-lg">
+                    @Html.DisplayFor(modelItem => item.Jurisdiccion.Nombre)
+                </td>
+                <td>
+                    <div class="hidden-print">
+                        <button type="button" class="btn  btn-xs">@Html.ActionLink("CONSULTAR", "Details", "Expedientes", new { id = item.Id }, null)</button>
+                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button>
+                        <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null)</button>
+                    </div>
+                </td>
+            </tr>
                 }
             </table>
-
             @* Se añade para poder imprimir la página *@
             <div class="hidden-print text-center">
                 <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
             </div>
-            <div class="hidden-print text-left">
-                @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-                <div class="btn btn-default">@Html.ActionLink("Volver a Abogados", "Index")</div>
+            
+            <div class="col-12 ml-2 mr-2">
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous"> @Html.ActionLink("VOLVER A  ABOGADOS", "Index")</li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

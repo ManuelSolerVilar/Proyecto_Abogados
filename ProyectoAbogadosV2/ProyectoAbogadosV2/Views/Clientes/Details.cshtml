@@ -4,6 +4,7 @@
     ViewBag.Title = "Details";
 }
     <div class="container-fluid">
+
         <div class="row">
             <div class="col-12 ml-2 mr-2 mt-2 pt-1 pl-2 pb-1 bg-grisclaro">
                 <h2>@Html.ActionLink("Cliente", "Index", "Clientes") / Detalle</h2>
@@ -135,7 +136,7 @@
                 <th class="hidden-xs">Fecha Inicio</th>
                 <th class="visible-lg">Fecha Cierre</th>
                 <th>Descripción</th>
-                <th >Abogado</th>
+                <th>Abogado</th>
                 <th class="visible-lg">Jurisdicción</th>
                 <th></th>
             </tr>
@@ -162,10 +163,10 @@
                     </td>
                     <td>
                         <div class="hidden-print">
-                            <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE ", "Details", "Expedientes", new { id = item.Id }, null)</button> 
-                            
+                            <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE ", "Details", "Expedientes", new { id = item.Id }, null)</button>
 
-                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline hidden-xs	">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button> 
+
+                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline hidden-xs	">@Html.ActionLink("EDITAR", "Edit", "Expedientes", new { id = item.Id }, null)</button>
                             <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline hidden-xs	">@Html.ActionLink("BORRAR", "Delete", "Expedientes", new { id = item.Id }, null)</button>
 
                         </div>
@@ -177,11 +178,17 @@
         <div class="hidden-print text-center">
             <a class="btn btn-default" href="javascript:window.print()">Imprimir</a>
         </div>
+
+        <div class="hidden-print text-left">
+            <nav aria-label="...">
+                <ul class="pager">
+                    <li class="previous">@Html.ActionLink("VOLVER A CLIENTES", "Index")</li>
+
+                </ul>
+            </nav>
+
+        </div>
         
-            <div class="hidden-print text-left">
-                @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
-                <div class="btn btn-default">@Html.ActionLink(" Volver a Clientes", "Index")</div>
-            </div>
     </div>
     </div>
         
