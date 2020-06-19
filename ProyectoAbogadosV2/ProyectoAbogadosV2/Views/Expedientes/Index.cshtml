@@ -2,50 +2,25 @@
 @model PagedList.IPagedList<ProyectoAbogadosV2.Models.Expediente>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
-
 @{
     ViewBag.Title = "Index";
 }
 <div class="container-fluid ">
     <div class="row">
-
         <div class="col-12 bg-azulmarino-degradado ml-2 mr-2 mt-1 mb-1 pl-1 pt-1 pb-1">
             <h2 class="text-white">Listado de Expedientes</h2>
         </div>
-
         <div class="col-lg-12  ml-2 mr-2 ">
-
             @if (User.IsInRole("Administrador"))
             {
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li class="previous"> @Html.ActionLink("NUEVO EXPEDIENTE", "Create")</li>
 
-            <nav aria-label="...">
-                <ul class="pager">
-                    <li class="previous"> @Html.ActionLink("NUEVO EXPEDIENTE", "Create")</li>
-
-                </ul>
-            </nav>
-
+                    </ul>
+                </nav>
             }
-
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <div class="col-lg-10 col-lg-offset-1 ml-3 mr-3">
             @* Para buscar por nombre de empleado en la lista de valores *@
             @using (Html.BeginForm("Index", "Expedientes", FormMethod.Get))
@@ -108,7 +83,6 @@
                     </th>
                     <th></th>
                 </tr>
-
                 @foreach (var item in Model)
                 {
                     <tr>
@@ -157,7 +131,7 @@
             </table>
             <br />
             @* Se muestra el número de páginas y el total de páginas *@
-            Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+            @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount*@
             @* Se muestran los botones de paginación mediante el helper PagedListPager *@
             @Html.PagedListPager(Model, page => Url.Action("Index",
             new { page, strBusquedaActual = ViewBag.BusquedaActual, strFiltroActual = ViewBag.FiltroActual }))

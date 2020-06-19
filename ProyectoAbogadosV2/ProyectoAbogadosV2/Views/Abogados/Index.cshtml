@@ -5,7 +5,6 @@
 }
 <div class="container-fluid ">
     <div class="row">
-
         <div class="col-12 bg-azulmarino-degradado ml-2 mr-2 mt-1 mb-1 pl-1 pt-1 pb-1">
             <h2 class="text-white">Listado de Abogados</h2>
         </div>
@@ -17,8 +16,8 @@
                 </ul>
             </nav>
         </div>
-        <div class="col-lg-11 ml-3 mr-2">
-            <table class="table table-hover table-responsive">
+        <div class="col-lg-10 col-lg-offset-1 ">
+            <table class="table table-hover table-responsive table-condensed">
                 <tr class=" bg-grisclaro color-grisoscuro-letras">
                     <th>
                         @Html.DisplayNameFor(model => model.NombreAbogado)
@@ -32,9 +31,10 @@
                     <th>
                         @Html.DisplayNameFor(model => model.MovilAbogado)
                     </th>
-                    <th class="hidden-xs">
-                        @Html.DisplayNameFor(model => model.FijoAbogado)
-                    </th>
+                    @*
+        <th class="hidden-xs">
+            @Html.DisplayNameFor(model => model.FijoAbogado)
+        </th>*@
                     <th class="hidden-xs">
                         @Html.DisplayNameFor(model => model.Email)
                     </th>
@@ -44,48 +44,51 @@
                     <th class="visible-lg">
                         @Html.DisplayNameFor(model => model.Poblacion_Cliente)
                     </th>
-                    <th class="visible-lg">
-                        @Html.DisplayNameFor(model => model.Cp_Cliente)
-                    </th>
+                    @*
+        <th class="visible-lg">
+            @Html.DisplayNameFor(model => model.Cp_Cliente)
+        </th>*@
                     <th></th>
                 </tr>
 
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.NombreAbogado)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ApellidosAbogado)
-                        </td>
-                        <td class="visible-lg">
-                            @Html.DisplayFor(modelItem => item.NifAbogado)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MovilAbogado)
-                        </td>
-                        <td class="hidden-xs">
-                            @Html.DisplayFor(modelItem => item.FijoAbogado)
-                        </td>
-                        <td class="hidden-xs">
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-                        <td class="visible-lg">
-                            @Html.DisplayFor(modelItem => item.Direccion_Cliente)
-                        </td>
-                        <td class="visible-lg">
-                            @Html.DisplayFor(modelItem => item.Poblacion_Cliente)
-                        </td>
-                        <td class="visible-lg">
-                            @Html.DisplayFor(modelItem => item.Cp_Cliente)
-                        </td>
-                        <td>
-                            <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
-                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
-                            <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
-                        </td>
-                    </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NombreAbogado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ApellidosAbogado)
+                </td>
+                <td class="visible-lg">
+                    @Html.DisplayFor(modelItem => item.NifAbogado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MovilAbogado)
+                </td>
+                @*
+        <td class="hidden-xs">
+            @Html.DisplayFor(modelItem => item.FijoAbogado)
+        </td>*@
+                <td class="hidden-xs">
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td class="visible-lg">
+                    @Html.DisplayFor(modelItem => item.Direccion_Cliente)
+                </td>
+                <td class="visible-lg">
+                    @Html.DisplayFor(modelItem => item.Poblacion_Cliente)
+                </td>
+                @*
+        <td class="visible-lg">
+            @Html.DisplayFor(modelItem => item.Cp_Cliente)
+        </td>*@
+                <td>
+                    <button type="button" class="btn btn-xs ">@Html.ActionLink("DETALLE", "Details", new { id = item.Id })</button>
+                    <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("EDITAR", "Edit", new { id = item.Id })</button>
+                    <button type="button" class="btn  btn-xs visible-lg-inline visible-md-inline">@Html.ActionLink("BORRAR", "Delete", new { id = item.Id })</button>
+                </td>
+            </tr>
                 }
             </table>
             @* Se añade para poder imprimir la página *@

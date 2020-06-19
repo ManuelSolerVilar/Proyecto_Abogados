@@ -86,7 +86,7 @@ namespace ProyectoAbogadosV2.Controllers
                     }
                 }
                 //Características de la paginación
-                int pageSize = 6;
+                int pageSize = 10;
                 int pageNumber = (page ?? 1);
                 return View(expedientes.ToPagedList(pageNumber, pageSize));
 
